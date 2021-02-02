@@ -1,0 +1,38 @@
+#login-wrapper {
+    margin: 0 auto;
+    padding: 0;
+    width: 25%;
+    height: 25%;
+    border: 1px solid #000000;
+}
+
+#login-wrapper form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px;
+}
+
+#login-wrapper label {
+    width: 100%;
+}
+
+#login-wrapper input {
+    width: 100%;
+    margin: 0 auto;
+    padding: 0;
+}
+
+#login-wrapper .action-buttons {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+button {
+    background-color: #bb0000;
+    color: #FFFFFF;
+    border: 2px solid #000000;
+    padding: 5px 10px;
+}
