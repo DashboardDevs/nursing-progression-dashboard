@@ -8,7 +8,7 @@ export default class Login extends Component {
         this.state = {
             username: "",
             password: "",
-            loggedIn: false
+            authenticated: false
         };
 
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -28,12 +28,12 @@ export default class Login extends Component {
 
     handleSubmit(e) {
         //TODO: Do something with the submitted username and password
-        this.setState({loggedIn: true});
+        this.setState({authenticated: true});
         e.preventDefault();
     }
     
     render() {
-        if (this.state.loggedIn) {
+        if (this.state.authenticated) {
             return <Redirect to="/dashboard" />
         }
 
