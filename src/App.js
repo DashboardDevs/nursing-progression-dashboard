@@ -6,6 +6,7 @@ import {
   Link
 } from "react-router-dom";
 import Student from './Student';
+import Advisor from './Advisor';
 
 function App() {
   return (
@@ -13,16 +14,28 @@ function App() {
       <nav>
         <ul class="border-0 border-b-2">
           <li class="text-center">
+            <Link class="text-scarlet underline" to="/advisor">Advisor</Link>
+          </li>
+          <li class="text-center">
             <Link class="text-scarlet underline" to="/student">Student</Link>
           </li>
         </ul>
       </nav>
       <Switch>
+        <Route path="/advisor">
+          <div>
+            <Advisor />
+          </div>
+        </Route>
         <Route path="/student">
-          <Student />
+          <div>
+            <Student />
+          </div>
         </Route>
         <Route path="/update">
-          <h1>Update Milestones</h1>
+          <div>
+            <h1>Update Milestones</h1>
+          </div>
         </Route>
         <Route path="/">
           <div>
