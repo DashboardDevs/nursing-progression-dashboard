@@ -33,8 +33,8 @@ export default class Student extends Component {
         return (
             <div>
                 <div class="w-full flex space-x-2">
-                    <h1 class="w-10/12 text-scarlet m-5 text-4xl">Bernard, Cole</h1>
-                    <Link class="bg-scarlet text-white p-2 px-6 rounded-3xl h-1/2 mt-5" to="/update">Update Milestones</Link>
+                    <h1 class="w-10/12 text-scarlet m-5 text-4xl">Kaes, Bary</h1>
+                    <Link class="bg-scarlet text-white py-2 px-6 rounded-3xl h-1/2 mt-5" to="/update">Update Milestones</Link>
                 </div>
                 <div class="w-full flex space-x-14 mx-auto justify-center">
                     {Object.entries(milestones).map((milestone) => {
@@ -69,7 +69,7 @@ export default class Student extends Component {
                                         </div>
                                     </div>
                                 )
-                            }
+                            } else return null;
                         })} 
                     </div>
                     <div id="second">
@@ -84,7 +84,7 @@ export default class Student extends Component {
                                         </div>
                                     </div>
                                 )
-                            }
+                            } else return null;
                         })} 
                     </div>
                 </div>

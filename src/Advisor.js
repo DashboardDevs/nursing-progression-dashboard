@@ -26,8 +26,8 @@ export default class Advisor extends Component {
         return (
             <div class="m-5">
                 {this.state.students.map(student =>
-                    <div class="bg-white border-2 p-6 rounded-md shadow-lg">
-                        <h2 class="text-3xl">{student.first_name} {student.last_name}</h2>
+                    <div class="bg-white border-2 p-6 m-5 rounded-md shadow-lg">
+                        <h2 class="text-3xl text-scarlet">{student.first_name} {student.last_name}</h2>
                         <Checklist />
                     </div>
                 )}
