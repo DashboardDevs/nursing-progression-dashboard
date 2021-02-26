@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Checklist from './Checklist';
+import { Link } from 'react-router-dom';
 
 export default class Advisor extends Component {
 
@@ -27,7 +28,7 @@ export default class Advisor extends Component {
             <div class="m-5">
                 {this.state.students.map(student =>
                     <div class="bg-white border-2 p-6 m-5 rounded-md shadow-lg">
-                        <h2 class="text-3xl text-scarlet">{student.first_name} {student.last_name}</h2>
+                        <Link class="text-3xl text-scarlet" to="/student">{student.first_name} {student.last_name}</Link>
                         <Checklist />
                     </div>
                 )}
