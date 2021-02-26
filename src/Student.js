@@ -5,6 +5,8 @@ import {
     Route,
     Link
   } from "react-router-dom";
+import './Student.css';
+
 
 export default class Student extends Component {
 
@@ -26,6 +28,7 @@ export default class Student extends Component {
             "Complete DNP Final Project Defense": 0,
             "Knowledge Bank submission": 0
         }
+        var count = 0;
 
         return (
             <div>
@@ -52,6 +55,38 @@ export default class Student extends Component {
                         }
                     })}
                     <div style={{width: "90%"}} class="w-11/12 border-0 border-b-2 fixed h-6 right-20 border-gray-600"></div>
+                </div>
+                <div id="container">
+                    <div id="first">
+                        {Object.entries(milestones).reverse().map(([milestone, done]) => {
+                            if(done===1 && count===0){
+                                count = 1;
+                                return (
+                                    <div class="circle">
+                                        <p >Previous Milestone: <br></br></p>
+                                        <div class="milestone">
+                                            <p >{milestone}</p>
+                                        </div>
+                                    </div>
+                                )
+                            }
+                        })} 
+                    </div>
+                    <div id="second">
+                        {Object.entries(milestones).map(([milestone, done]) => {
+                            if(done===0 && count===1){
+                                count = 0;
+                                return (
+                                    <div class="circle">
+                                        <p >Upcoming Milestone: <br></br></p>
+                                        <div class="milestone">
+                                            <p >{milestone}</p>
+                                        </div>
+                                    </div>
+                                )
+                            }
+                        })} 
+                    </div>
                 </div>
             </div>
         );
