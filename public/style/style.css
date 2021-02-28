@@ -1,0 +1,22 @@
+body {
+    margin: 0;
+}
+
+.header {
+    width: 100%;
+    height: 100px;
+    background-color: #333333;
+    border-bottom: 5px #bb0506 solid;
+}
+
+#logoBackground{
+    height: 100%;
+    float: right;
+}
+
+#nursinglogo{
+    height: 40px;
+    position: absolute;
+    top: 30px;
+    right: 100px;
+}
