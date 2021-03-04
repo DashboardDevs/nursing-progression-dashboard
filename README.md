@@ -75,13 +75,13 @@ Cypress.io: Fast, easy and reliable end-to-end testing for anything that runs in
 
 ### Install Cypress
 
-'$ npm install cypress --save-dev'
+`$ npm install cypress --save-dev`
 
 ### Open Cypress
 
-'$ ./node_modules/.bin/cypress open'
+`$ ./node_modules/.bin/cypress open`
 or
-'$ npm run cypress'
+`$ npm run cypress`
 
 
 
