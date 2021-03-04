@@ -12,14 +12,13 @@ export default class Advisor extends Component {
     }
 
     componentDidMount() {
-        //This will be an api call to the mock data server later
+        //Fetch student data from database
         const url = "http://localhost:3001/student"
         fetch(url)
             .then(res => res.json())
             .then(data => {
                 var visibleStudents = data.slice(0, 10); //Only store first 10 students in the state
                 this.setState({ students: visibleStudents });
-                console.log(this.state.students);
             })
     }
 
