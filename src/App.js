@@ -6,6 +6,7 @@ import {
   Link
 } from "react-router-dom";
 import Student from './Student';
+import UpdateRequestForm from './UpdateRequestForm';
 
 function App() {
   return (
@@ -22,7 +23,7 @@ function App() {
           <Student />
         </Route>
         <Route path="/update">
-          <h1>Update Milestones</h1>
+          <UpdateRequestForm />
         </Route>
         <Route path="/">
           <div>
