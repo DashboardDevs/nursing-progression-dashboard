@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import Checklist from './Checklist';
+import SearchBar from './SearchBar';
+import StudentTable from './StudentTable';
 
 export default class Advisor extends Component {
 
@@ -24,13 +26,16 @@ export default class Advisor extends Component {
 
     render() {
         return (
-            <div class="m-5">
-                {this.state.students.map(student =>
-                    <div class="bg-white border-2 p-6 rounded-md shadow-lg">
-                        <h2 class="text-3xl">{student.first_name} {student.last_name}</h2>
-                        <Checklist />
+            <div class="flex justify-center">
+                <div class="flex flex-col mx-2 w-3/5">
+                    <div class="grid grid-cols-2">
+                        <div class="text-xl font-semibold">Student Milestone Dashboard</div>
+                        <div class="justify-self-end bg-gray-200 rounded-full my-1 px-16 text-gray-400">
+                            <SearchBar/>
+                        </div>
                     </div>
-                )}
+                    <StudentTable students={this.state.students}/>
+                </div>
             </div>
         )
     }
