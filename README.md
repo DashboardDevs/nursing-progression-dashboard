@@ -68,3 +68,20 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+## Testing
+
+Cypress.io: Fast, easy and reliable end-to-end testing for anything that runs in a browser.
+
+### Install Cypress
+
+'$ npm install cypress --save-dev'
+
+### Open Cypress
+
+'$ ./node_modules/.bin/cypress open'
+or
+'$ npm run cypress'
+
+
+
