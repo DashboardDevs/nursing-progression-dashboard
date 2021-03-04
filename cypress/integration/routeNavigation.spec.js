@@ -9,4 +9,11 @@ describe("Routes", () => {
         .click();
       cy.location("pathname", { timeout: 60000 }).should("include", "/student");
     });
+
+    it("Redirects to Advisor page from Login page", () => {
+        cy.get(".text-center > a")
+          .eq(0)
+          .click();
+        cy.location("pathname", { timeout: 60000 }).should("include", "/advisor");
+      });
   });
