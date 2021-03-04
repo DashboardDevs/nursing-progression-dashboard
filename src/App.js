@@ -40,7 +40,6 @@ function App() {
         </Route>
         <Route exact path="/">
           <div>
-            <h1>Nursing Doctoral Student Dashboard</h1>
             <Login />
           </div>
         </Route>

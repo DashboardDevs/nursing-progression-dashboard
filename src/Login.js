@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
-import './Login.css';
 
 export default class Login extends Component {
     constructor(props) {
@@ -38,18 +37,20 @@ export default class Login extends Component {
         }
 
         return (
-            <div id="login-wrapper">
-                <form onSubmit={this.handleSubmit}>
-                    <label>
-                        Username
-                        <input type="text" name="username" onChange={this.handleInputChange} placeholder="Username"/>
+            <div>
+                <form class="mt-10 mx-auto p-5 w-1/3 h-1/3 flex flex-col bg-gray-300 rounded-sm border border-gray-500" onSubmit={this.handleSubmit}>
+                    <label class="flex flex-row">
+                        <span class="flex-grow">Username:</span>
+                        <span class="flex-grow"></span>
+                        <input class="flex-grow rounded-sm border border-gray-500 px-1" type="text" name="username" onChange={this.handleInputChange} placeholder="lastname.#"/>
                     </label>
-                    <label>
-                        Password
-                        <input type="password" name="password" onChange={this.handleInputChange}/>
+                    <label class="flex flex-row my-5">
+                        <span class="flex-grow">Password:</span>
+                        <span class="flex-grow"></span>
+                        <input class="flex-grow rounded-sm border border-gray-500 px-1" type="password" name="password" onChange={this.handleInputChange}/>
                     </label>
-                    <div className="action-buttons">
-                        <button type="submit">Log In</button>
+                    <div class="w-full flex flex-row-reverse">
+                        <button class="bg-scarlet text-white py-2 px-10 rounded-md hover:bg-dark-scarlet" type="submit">Log In</button>
                     </div>
                 </form>
             </div>
