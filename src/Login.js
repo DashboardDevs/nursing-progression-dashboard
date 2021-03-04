@@ -7,7 +7,8 @@ export default class Login extends Component {
         this.state = {
             username: "",
             password: "",
-            authenticated: false
+            authenticated: false,
+            currentUser: null
         };
 
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -26,19 +27,45 @@ export default class Login extends Component {
     }
 
     handleSubmit(e) {
-        //TODO: Do something with the submitted username and password
-        this.setState({authenticated: true});
+        //TODO: When Database is set, actually grab the right account / check valid username was provided
+
+        let currentUser = this.state.username === "kaes.15" || this.state.username === "Kaes.15" ? {
+            firstname: "Bary",
+            lastname: "Kaes",
+            dotNumber: 15,
+            advisorId: 4,
+            isAdvisor: false,
+            isAdmin: false
+        } :
+        {
+            firstname: "Michael",
+            lastname: "Ackerman",
+            dotNumber: 4,
+            advisorId: null,
+            isAdvisor: true,
+            isAdmin: false
+        }
+
+        this.setState(
+            {
+                authenticated: true,
+                currentUser: currentUser
+            });
         e.preventDefault();
     }
     
     render() {
-        if (this.state.authenticated) {
-            return <Redirect to="/dashboard" />
+        if (!!this.state.currentUser && (this.state.currentUser.isAdvisor || this.state.currentUser.isAdmin)) {
+            console.log("load dashboard")
+            return <Redirect to="/advisor" />
+        } else if (!!this.state.currentUser){
+            console.log("load student")
+            return <Redirect to="/student"/>
         }
 
         return (
             <div>
-                <form class="mt-10 mx-auto p-5 w-1/3 h-1/3 flex flex-col bg-gray-300 rounded-sm border border-gray-500" onSubmit={this.handleSubmit}>
+                <form className="mt-10 mx-auto p-5 w-1/3 h-1/3 flex flex-col bg-gray-300 rounded-sm border border-gray-500" onSubmit={this.handleSubmit}>
                     <label class="flex flex-row">
                         <span class="flex-grow">Username:</span>
                         <span class="flex-grow"></span>
