@@ -7,7 +7,8 @@ module.exports = {
         'scarlet': '#bb0000'
       },
       backgroundColor: {
-        'scarlet': '#bb0000'
+        'scarlet': '#bb0000',
+        'dark-scarlet': '#aa0000'
       }
     },
   },
