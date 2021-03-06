@@ -27,7 +27,16 @@ export default class Login extends Component {
     }
 
     handleSubmit(e) {
-        //TODO: When Database is set, actually grab the right account / check valid username was provided
+        let last_name = this.state.username.split(".")[0];
+        let dot_number = this.state.username.split(".")[1];
+
+
+        const url = `http://localhost:3001/login?last_name=${last_name}&dot_number=${dot_number}`
+        fetch(url)
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+            })
 
         let currentUser = this.state.username === "kaes.15" || this.state.username === "Kaes.15" ? {
             firstname: "Bary",
@@ -56,10 +65,8 @@ export default class Login extends Component {
     
     render() {
         if (!!this.state.currentUser && (this.state.currentUser.isAdvisor || this.state.currentUser.isAdmin)) {
-            console.log("load dashboard")
-            return <Redirect to="/advisor" />
+            // return <Redirect to="/advisor" />
         } else if (!!this.state.currentUser){
-            console.log("load student")
             return <Redirect to="/student"/>
         }
 
