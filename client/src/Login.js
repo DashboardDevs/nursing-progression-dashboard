@@ -30,32 +30,21 @@ export default class Login extends Component {
         let last_name = this.state.username.split(".")[0];
         let dot_number = this.state.username.split(".")[1];
 
-        let currentUser;
         const url = `http://localhost:3001/login?last_name=${last_name}&dot_number=${dot_number}`
         fetch(url)
             .then(res => res.json())
             .then(data => {
                 // This should only ever return a single row which is the correct account
-                currentUser = data[0];
-                console.log(data);
-
-                this.setState(
-                    {
-                        authenticated: true,
-                        currentUser: currentUser
-                    });
+                let currentUser = data[0];
+                currentUser.isAdvisor = currentUser.perms === 1;
+                currentUser.isAdmin = currentUser.perms === 2;
+                this.props.handleUserLogin(currentUser);
             })
 
         e.preventDefault();
     }
     
     render() {
-        if (!!this.state.currentUser && (this.state.currentUser.isAdvisor || this.state.currentUser.isAdmin)) {
-            return <Redirect to="/advisor" />
-        } else if (!!this.state.currentUser){
-            return <Redirect to="/student"/>
-        }
-
         return (
             <div>
                 <form className="mt-10 mx-auto p-5 w-1/3 h-1/3 flex flex-col bg-gray-300 rounded-sm border border-gray-500" onSubmit={this.handleSubmit}>

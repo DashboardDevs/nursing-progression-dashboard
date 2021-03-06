@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Checklist from './Checklist';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 export default class Advisor extends Component {
 
@@ -23,6 +23,11 @@ export default class Advisor extends Component {
     }
 
     render() {
+
+        if(this.props.currentUser === null) {
+            return <Redirect to="/"/>
+        }
+
         return (
             <div class="m-5">
                 {this.state.students.map(student =>
