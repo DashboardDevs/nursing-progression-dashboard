@@ -44,7 +44,7 @@ export default class Advisor extends Component {
                     <StudentTable searched={this.state.filterText} students={this.state.students}/>
                 </div>
                 <div class="hidden lg:flex flex-col w-1/5 mt-8 mx-6">
-                    <div class="flex flex-col items-center bg-gray-200 pt-4 rounded-lg h-1/5">
+                    <div class="flex flex-col items-center bg-gray-200 pt-4 rounded-lg h-48">
                         <div class="bg-red-700 rounded-lg w-3/5 text-white font-semibold py-2 text-center text-lg">Pending Reviews</div>
                         <div class="border-t border-black w-9/12 border-gray-300 m-2"></div>
                     </div>
