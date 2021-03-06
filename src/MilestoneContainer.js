@@ -42,7 +42,7 @@ export default class MilestoneContainer extends Component {
         if(!this.state.expanded){
             return(
                 <div class="flex flex-col items-center bg-gray-200 rounded-xl p-2 my-2 justify-center">
-                    <div class="grid grid-cols-3 gap-x-20 gap-y-2 justify-items-start">
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-x-20 gap-y-2 justify-items-start">
                         {
                             Object.keys(SampleMilestones).map(milestone =>
                                 {

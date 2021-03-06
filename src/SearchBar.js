@@ -14,8 +14,8 @@ export default class SearchBar extends Component {
     render(){
         const searchText = this.props.filterText;
         return(
-            <div>
-                <input class="bg-transparent text-center w-full" type="text" value={searchText} onChange = {this.handleChange} placeholder='Search a Student'/>
+            <div class="flex">
+                <input class="bg-transparent text-center focus:outline-none" type="text" value={searchText} onChange = {this.handleChange} placeholder='Search a Student'/>
                 {/* Placeholder Search Function */}
             </div>
         )
