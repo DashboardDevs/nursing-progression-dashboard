@@ -25,7 +25,7 @@ export default class Checklist extends Component {
             <div className = "grid grid-cols-3">
                 {milestones.map(milestone =>
                     <div>
-                        <input type="checkbox" />
+                        <input type="checkbox" disabled="true"/>
                         <span> {milestone}</span>
                     </div>
                 )}
