@@ -45,6 +45,13 @@ export default class Login extends Component {
     }
     
     render() {
+
+        if (!!this.props.currentUser && (this.props.currentUser.isAdvisor || this.props.currentUser.isAdmin)) {
+            return <Redirect to="/advisor"></Redirect>
+        } else if (!!this.props.currentUser) {
+            return <Redirect to="/student"></Redirect>
+        }
+
         return (
             <div>
                 <form className="mt-10 mx-auto p-5 w-1/3 h-1/3 flex flex-col bg-gray-300 rounded-sm border border-gray-500" onSubmit={this.handleSubmit}>
