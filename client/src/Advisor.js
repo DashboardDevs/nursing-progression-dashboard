@@ -20,7 +20,7 @@ export default class Advisor extends Component {
 
     componentDidMount() {
         //This will be an api call to the mock data server later
-        const url = "./Data/MOCK_DATA.json"
+        const url = "http://localhost:3001/student"
         fetch(url)
             .then(res => res.json())
             .then(data => {
