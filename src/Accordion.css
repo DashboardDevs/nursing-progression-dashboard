@@ -1,0 +1,31 @@
+.accordionComponent {
+  display: grid;
+  grid-template-columns: auto auto auto;
+}
+
+.accordion-head {
+    background-color: white;
+    color: black;
+    width: 100%;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 18px;
+    text-align: left;
+    border: none;
+    border-radius: 15px;
+    outline: none;
+    transition: 0.4s;
+}
+
+.active-accordion, .accordion-head:hover {
+    background-color: lightgray;
+}
+
+.panel-accordion {
+    padding: 0 18px;
+
+    display: none;
+    overflow: hidden;
+    border-radius: 15px;
+    color: black;
+}
