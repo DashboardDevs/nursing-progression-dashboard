@@ -2,18 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Prep for merge */
-/* Prep for merge */
-/* Prep for merge */
-/* Prep for merge */
-/* Prep for merge */
-/* Prep for merge */
 
-/* Prep for merge */
-/* Prep for merge */
-/* Prep for merge */
-/* Prep for merge */
-/* Prep for merge */
-/* Prep for merge */
-/* Prep for merge */
-/* Prep for merge */
+#complete {
+    @apply bg-green-600
+}
+
+#incomplete {
+    @apply bg-red-700
+}
+
+#inprogress {
+    @apply bg-yellow-500
+}
