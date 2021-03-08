@@ -28,7 +28,7 @@ function App() {
             <Advisor />
           </div>
         </Route>
-        <Route path="/student">
+        <Route path="/student/:id">
           <div>
             <Student />
           </div>

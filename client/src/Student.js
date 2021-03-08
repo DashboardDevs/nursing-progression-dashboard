@@ -1,18 +1,17 @@
 import React, { Component } from 'react';
 import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
     Link
   } from "react-router-dom";
 import './Student.css';
 
 
-export default class Student extends Component {
+export default class Student extends Component { 
 
 
     componentDidMount() {
-        let id = 1
+        let path = window.location.pathname.split("/");
+        let id = path[path.length - 1];
+
         const urlStudent = `http://localhost:3001/student/${id}`;
         fetch(urlStudent)
             .then(res => res.json())

@@ -60,7 +60,7 @@ export default class Login extends Component {
             return <Redirect to="/advisor" />
         } else if (!!this.state.currentUser){
             console.log("load student")
-            return <Redirect to="/student"/>
+            return <Redirect to={{pathname: `/student/${this.state.currentUser.id}`}}/>
         }
 
         return (
