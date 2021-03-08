@@ -1,51 +1,57 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  Link
+  Route
 } from "react-router-dom";
 import Student from './Student';
 import Advisor from './Advisor';
 import Login from './Login';
 
-function App() {
-  return (
-    <Router>
-      <nav>
-        <ul class="border-0 border-b-2">
-          <li class="text-center">
-            <Link class="text-scarlet underline" to="/advisor">Advisor</Link>
-          </li>
-          <li class="text-center">
-            <Link class="text-scarlet underline" to="/student">Student</Link>
-          </li>
-        </ul>
-      </nav>
-      <Switch>
-        <Route path="/advisor">
-          <div>
-            <Advisor />
-          </div>
-        </Route>
-        <Route path="/student/:id">
-          <div>
-            <Student />
-          </div>
-        </Route>
-        <Route path="/update">
-          <div>
-            <h1>Update Milestones</h1>
-          </div>
-        </Route>
-        <Route exact path="/">
-          <div>
-            <Login />
-          </div>
-        </Route>
-      </Switch>
-    </Router>
-  );
+class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      currentUser: null
+    }
+
+    this.handleUserLogin = this.handleUserLogin.bind(this);
+  }
+
+  handleUserLogin(user) {
+    this.setState({currentUser: user});
+    console.log('app', user);
+  }
+
+  render() {
+    return (
+      <Router>
+        <Switch>
+          <Route path="/advisor">
+            <div>
+              <Advisor currentUser={this.state.currentUser}/>
+            </div>
+          </Route>
+          <Route path="/student/:id">
+            <div>
+              <Student currentUser={this.state.currentUser}/>
+            </div>
+          </Route>
+          <Route path="/update">
+            <div>
+              <h1>Update Milestones</h1>
+            </div>
+          </Route>
+          <Route exact path="/">
+            <div>
+              <Login currentUser={this.state.currentUser} handleUserLogin={this.handleUserLogin}/>
+            </div>
+          </Route>
+        </Switch>
+      </Router>
+    );
+  }
 }
 
 export default App;

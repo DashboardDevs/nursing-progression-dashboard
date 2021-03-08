@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Checklist from './Checklist';
+import { Redirect } from 'react-router-dom';
 import SearchBar from './SearchBar';
 import StudentTable from './StudentTable';
 
@@ -31,6 +31,11 @@ export default class Advisor extends Component {
     }
 
     render() {
+
+        if(this.props.currentUser === null) {
+            return <Redirect to="/"/>
+        }
+
         const text = this.state.filterText;
         return (
             <div class="flex flex-row justify-center">
@@ -46,7 +51,7 @@ export default class Advisor extends Component {
                 <div class="hidden lg:flex flex-col w-1/5 mt-8 mx-6">
                     <div class="flex flex-col items-center bg-gray-200 pt-4 rounded-lg h-48">
                         <div class="bg-red-700 rounded-lg w-3/5 text-white font-semibold py-2 text-center text-lg">Pending Reviews</div>
-                        <div class="border-t border-black w-9/12 border-gray-300 m-2"></div>
+                        <div class="border-t w-9/12 border-gray-300 m-2"></div>
                     </div>
                 </div>
             </div>

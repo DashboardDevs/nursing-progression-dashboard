@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {
-    Link
+    Link,
+    Redirect
   } from "react-router-dom";
 import './Student.css';
 
@@ -27,7 +28,18 @@ export default class Student extends Component {
             })
     }
 
+    constructor(props) {
+        super(props);
+        console.log(props);
+    }
+
+    // Currently uses the current User's name instead of the student's name.
+    // need to add id to student object and do a /Student/:id route to pull the right data
     render() {
+
+        if(this.props.currentUser === null) {
+            return <Redirect to="/"/>
+        }
 
         const milestones = {
             "Initial meeting with advisor": 1,
@@ -50,7 +62,7 @@ export default class Student extends Component {
         return (
             <div>
                 <div class="w-full flex space-x-2">
-                    <h1 class="w-10/12 text-scarlet m-5 text-4xl">Kaes, Bary</h1>
+                    <h1 class="w-10/12 text-scarlet m-5 text-4xl">{this.props.currentUser.last_name}, {this.props.currentUser.first_name}</h1>
                     <Link class="bg-scarlet text-white py-2 px-6 rounded-3xl h-1/2 mt-5" to="/update">Update Milestones</Link>
                 </div>
                 <div class="w-full flex space-x-14 mx-auto justify-center">

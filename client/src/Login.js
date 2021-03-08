@@ -27,40 +27,29 @@ export default class Login extends Component {
     }
 
     handleSubmit(e) {
-        //TODO: When Database is set, actually grab the right account / check valid username was provided
+        let last_name = this.state.username.split(".")[0];
+        let dot_number = this.state.username.split(".")[1];
 
-        let currentUser = this.state.username === "kaes.15" || this.state.username === "Kaes.15" ? {
-            firstname: "Bary",
-            lastname: "Kaes",
-            dotNumber: 15,
-            advisorId: 4,
-            isAdvisor: false,
-            isAdmin: false
-        } :
-        {
-            firstname: "Michael",
-            lastname: "Ackerman",
-            dotNumber: 4,
-            advisorId: null,
-            isAdvisor: true,
-            isAdmin: false
-        }
+        const url = `http://localhost:3001/login?last_name=${last_name}&dot_number=${dot_number}`
+        fetch(url)
+            .then(res => res.json())
+            .then(data => {
+                // This should only ever return a single row which is the correct account
+                let currentUser = data[0];
+                currentUser.isAdvisor = currentUser.perms === 1;
+                currentUser.isAdmin = currentUser.perms === 2;
+                this.props.handleUserLogin(currentUser);
+            })
 
-        this.setState(
-            {
-                authenticated: true,
-                currentUser: currentUser
-            });
         e.preventDefault();
     }
     
     render() {
-        if (!!this.state.currentUser && (this.state.currentUser.isAdvisor || this.state.currentUser.isAdmin)) {
-            console.log("load dashboard")
-            return <Redirect to="/advisor" />
-        } else if (!!this.state.currentUser){
-            console.log("load student")
-            return <Redirect to={{pathname: `/student/${this.state.currentUser.id}`}}/>
+
+        if (!!this.props.currentUser && (this.props.currentUser.isAdvisor || this.props.currentUser.isAdmin)) {
+            return <Redirect to="/advisor"></Redirect>
+        } else if (!!this.props.currentUser) {
+            return <Redirect to={{pathname: `/student/${this.props.currentUser.id}`}}/>
         }
 
         return (
