@@ -8,6 +8,12 @@ import './Student.css';
 
 export default class Student extends Component { 
 
+    constructor(props) {
+        super(props);
+        this.state = {isLoading: true};
+        console.log(props);
+    }
+
 
     componentDidMount() {
         let path = window.location.pathname.split("/");
@@ -21,16 +27,11 @@ export default class Student extends Component {
                 fetch(urlMilestone)
                     .then(res => res.json())
                     .then(milestones => {
-                        this.setState({ student: student[0], milestones: milestones });
+                        this.setState({ student: student[0], milestones: milestones, isLoading: false });
                         console.log(this.state.student);
                         console.log(this.state.milestones);
                     })
             })
-    }
-
-    constructor(props) {
-        super(props);
-        console.log(props);
     }
 
     // Currently uses the current User's name instead of the student's name.
@@ -39,6 +40,10 @@ export default class Student extends Component {
 
         if(this.props.currentUser === null) {
             return <Redirect to="/"/>
+        }
+
+        if (this.state.isLoading) {
+            return null;
         }
 
         const milestones = {
@@ -62,7 +67,7 @@ export default class Student extends Component {
         return (
             <div>
                 <div class="w-full flex space-x-2">
-                    <h1 class="w-10/12 text-scarlet m-5 text-4xl">{this.props.currentUser.last_name}, {this.props.currentUser.first_name}</h1>
+                    <h1 class="w-10/12 text-scarlet m-5 text-4xl">{this.state.student.last_name}, {this.state.student.first_name}</h1>
                     <Link class="bg-scarlet text-white py-2 px-6 rounded-3xl h-1/2 mt-5" to="/update">Update Milestones</Link>
                 </div>
                 <div class="w-full flex space-x-14 mx-auto justify-center">
