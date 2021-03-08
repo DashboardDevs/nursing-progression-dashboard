@@ -71,19 +71,20 @@ export default class Student extends Component {
                     <Link class="bg-scarlet text-white py-2 px-6 rounded-3xl h-1/2 mt-5" to="/update">Update Milestones</Link>
                 </div>
                 <div class="w-full flex space-x-14 mx-auto justify-center">
-                    {Object.entries(milestones).map((milestone) => {
-                        if(milestone[1]) {
+                    {Object.entries(this.state.milestones).map((milestone) => {
+                        console.log(milestone);
+                        if(milestone[1].status === 1) {
                             return (
                                 <div class="group justify-center z-10">
                                     <div class="w-12 h-12 border-2 border-black rounded-full bg-gray-600"></div>
-                                    <p class="opacity-0 group-hover:opacity-100 fixed">{milestone[0]}</p>
+                                    <p class="opacity-0 group-hover:opacity-100 fixed">{milestone[1].description}</p>
                                 </div>
                             )
                         } else {
                             return (
                                 <div class="group justify-center z-10">
                                     <div class="w-12 h-12 border-2 border-black rounded-full bg-white"></div>
-                                    <p class="opacity-0 group-hover:opacity-100 fixed">{milestone[0]}</p>
+                                    <p class="opacity-0 group-hover:opacity-100 fixed">{milestone[1].description}</p>
                                 </div>
                             )
                         }
