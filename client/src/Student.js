@@ -10,6 +10,24 @@ import './Student.css';
 
 export default class Student extends Component {
 
+
+    componentDidMount() {
+        let id = 1
+        const urlStudent = `http://localhost:3001/student/${id}`;
+        fetch(urlStudent)
+            .then(res => res.json())
+            .then(student => {
+                const urlMilestone = `http://localhost:3001/milestones/${student[0].id}`;
+                fetch(urlMilestone)
+                    .then(res => res.json())
+                    .then(milestones => {
+                        this.setState({ student: student[0], milestones: milestones });
+                        console.log(this.state.student);
+                        console.log(this.state.milestones);
+                    })
+            })
+    }
+
     render() {
 
         const milestones = {
