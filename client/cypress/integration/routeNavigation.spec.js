@@ -1,19 +1,33 @@
 describe("Routes", () => {
-    before(() => {
+    beforeEach(() => {
       cy.visit("/");
     });
   
-    it("Redirects to Student page from Login page", () => {
-      cy.get(".text-center > a")
-        .eq(1)
+    it("Logs into a student account, redirecting to the student page", () => {
+      cy.get("input[name='username']")
+        .eq(0)
+        .type('kaes.387');
+      cy.get("input[name='password']")
+        .eq(0)
+        .type('password')
+      cy.get("button[type='submit']")
+        .eq(0)
         .click();
+      cy.wait(500);
       cy.location("pathname", { timeout: 60000 }).should("include", "/student");
     });
 
-    it("Redirects to Advisor page from Login page", () => {
-        cy.get(".text-center > a")
-          .eq(0)
-          .click();
-        cy.location("pathname", { timeout: 60000 }).should("include", "/advisor");
-      });
+    it("Logs into a student account, redirecting to the advisor page", () => {
+      cy.get("input[name='username']")
+        .eq(0)
+        .type('ackerman.249');
+      cy.get("input[name='password']")
+        .eq(0)
+        .type('password')
+      cy.get("button[type='submit']")
+        .eq(0)
+        .click();
+      cy.wait(500);
+      cy.location("pathname", { timeout: 60000 }).should("include", "/advisor");
+    });
   });
