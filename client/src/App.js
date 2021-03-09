@@ -7,6 +7,8 @@ import {
 } from "react-router-dom";
 import Student from './Student';
 import UpdateRequestForm from './UpdateRequestForm';
+import Advisor from './Advisor';
+import Login from './Login';
 
 function App() {
   return (
@@ -14,20 +16,32 @@ function App() {
       <nav>
         <ul class="border-0 border-b-2">
           <li class="text-center">
+            <Link class="text-scarlet underline" to="/advisor">Advisor</Link>
+          </li>
+          <li class="text-center">
             <Link class="text-scarlet underline" to="/student">Student</Link>
           </li>
         </ul>
       </nav>
       <Switch>
+        <Route path="/advisor">
+          <div>
+            <Advisor />
+          </div>
+        </Route>
         <Route path="/student">
-          <Student />
+          <div>
+            <Student />
+          </div>
         </Route>
         <Route path="/update">
-          <UpdateRequestForm />
-        </Route>
-        <Route path="/">
           <div>
-            <h1>Nursing Doctoral Student Dashboard</h1>
+            <UpdateRequestForm />
+          </div>
+        </Route>
+        <Route exact path="/">
+          <div>
+            <Login />
           </div>
         </Route>
       </Switch>

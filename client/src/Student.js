@@ -65,8 +65,8 @@ export default class Student extends Component {
         return (
             <div>
                 <div class="w-full flex space-x-2">
-                    <h1 class="w-10/12 text-scarlet m-5 text-4xl">Bernard, Cole</h1>
-                    <Link class="bg-scarlet text-white p-2 px-6 rounded-3xl h-1/2 mt-5" to="/update">Update Milestones</Link>
+                    <h1 class="w-10/12 text-scarlet m-5 text-4xl">Kaes, Bary</h1>
+                    <Link class="bg-scarlet text-white py-2 px-6 rounded-3xl h-1/2 mt-5" to="/update">Update Milestones</Link>
                 </div>
                 <div id="progressBar" >
                     <div id="bar" style={{width: setWidth}}></div>
