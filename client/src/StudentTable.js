@@ -28,7 +28,7 @@ export default class StudentTable extends Component {
                                         <div class="bg-red-300 h-full w-2/5 rounded-full"></div>
                                     </div>
                                 </div>
-                                <MilestoneContainer/>
+                                <MilestoneContainer student={name}/>
                             </div>
                         ))}
                 </div>
