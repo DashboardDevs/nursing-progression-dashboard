@@ -1,0 +1,20 @@
+#backdrop {
+    border-radius: 10px;
+}
+#submitbutton {
+    background-color: #ffffff !important;
+    
+    color: #8c8c8c !important;
+    padding: 5px;
+    border:#bb0000;
+    border-radius: 8px;
+}
+ 
+#submitbutton:hover {
+    background-color: #bb0000 !important;
+    color: #ffffff !important;
+}
+
+label{
+    color:#595959
+}
