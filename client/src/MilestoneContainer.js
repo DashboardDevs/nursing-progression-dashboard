@@ -10,6 +10,12 @@ export default class MilestoneContainer extends Component {
         }
     }
 
+    componentDidUpdate(prevProps){
+        if (prevProps.student != this.props.student){
+            this.collapseMenu()
+        }
+    }
+
     expandMenu(e){
         this.setState({
             expanded : true
@@ -36,8 +42,6 @@ export default class MilestoneContainer extends Component {
             'Milestone 9' : 4,
             'Milestone 10' : 4,
         }
-
-        var displayed;
 
         if(!this.state.expanded){
             return(

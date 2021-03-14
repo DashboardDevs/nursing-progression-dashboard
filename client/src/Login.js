@@ -58,7 +58,7 @@ export default class Login extends Component {
                     <label class="flex flex-row">
                         <span class="flex-grow">Username:</span>
                         <span class="flex-grow"></span>
-                        <input class="flex-grow rounded-sm border border-gray-500 px-1" type="text" name="username" onChange={this.handleInputChange} placeholder="lastname.#"/>
+                        <input class="flex-grow rounded-sm border border-gray-500 px-1" type="text" name="username" onChange={this.handleInputChange} placeholder="lastname.#" autoFocus/>
                     </label>
                     <label class="flex flex-row my-5">
                         <span class="flex-grow">Password:</span>

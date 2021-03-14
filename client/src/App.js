@@ -5,6 +5,7 @@ import {
   Route
 } from "react-router-dom";
 import Student from './Student';
+import UpdateRequestForm from './UpdateRequestForm';
 import Advisor from './Advisor';
 import Login from './Login';
 
@@ -40,7 +41,7 @@ class App extends Component {
           </Route>
           <Route path="/update">
             <div>
-              <h1>Update Milestones</h1>
+              <UpdateRequestForm />
             </div>
           </Route>
           <Route exact path="/">
