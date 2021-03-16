@@ -32,7 +32,7 @@ export default class Advisor extends Component {
 
     render() {
 
-        if(this.props.currentUser === null) {
+        if(this.props.currentUser === null || !this.props.currentUser.isAdvisor || !this.props.currentUser.isAdmin) {
             return <Redirect to="/"/>
         }
 
