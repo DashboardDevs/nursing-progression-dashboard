@@ -28,10 +28,10 @@ export default class StudentTable extends Component {
                                     <Link class="bg-gray-200 w-36 text-center font-semibold py-1 rounded-lg" to={{pathname: `/student/${s.id}`}}>{s.nameDotNumber}</Link>
                                     <div class=" bg-gray-200 mx-2 h-4 w-full rounded-full">
                                         {/* Placeholder Progress Bar */}
-                                        <div class="bg-red-300 h-full w-2/5 rounded-full"></div>
+                                        <div class="bg-green-500 h-full w-2/5 rounded-full"></div>
                                     </div>
                                 </div>
-                                <MilestoneContainer student={name}/>
+                                <MilestoneContainer student={s.id}/>
                             </div>
                         ))}
                 </div>

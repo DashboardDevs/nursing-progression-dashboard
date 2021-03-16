@@ -6,8 +6,19 @@ export default class MilestoneContainer extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            expanded: false
+            expanded: false,
+            isLoading: true
         }
+    }
+
+    componentDidMount() {
+        const urlMilestone = `http://localhost:3001/milestones/${this.props.student}`;
+            fetch(urlMilestone)
+                .then(res => res.json())
+                .then(milestones => {
+                    this.setState({ milestones: milestones, isLoading: false });
+                    console.log(this.state.milestones);
+                });
     }
 
     componentDidUpdate(prevProps){
@@ -29,18 +40,8 @@ export default class MilestoneContainer extends Component {
     }
     
     render(){
-
-        var SampleMilestones = {
-            'Milestone 1' : 1,
-            'Milestone 2' : 2,
-            'Milestone 3' : 1,
-            'Milestone 4' : 1,
-            'Milestone 5' : 1,
-            'Milestone 6' : 2,
-            'Milestone 7' : 1,
-            'Milestone 8' : 3,
-            'Milestone 9' : 4,
-            'Milestone 10' : 4,
+        if(this.state.isLoading) {
+            return null;
         }
 
         if(!this.state.expanded){
@@ -48,32 +49,27 @@ export default class MilestoneContainer extends Component {
                 <div class="flex flex-col items-center bg-gray-200 rounded-xl p-2 my-2 justify-center">
                     <div class="grid grid-cols-2 md:grid-cols-3 gap-x-20 gap-y-2 justify-items-start">
                         {
-                            Object.keys(SampleMilestones).map(milestone =>
-                                {
-                                    if(SampleMilestones[milestone]==2){
-                                        return(
-                                            <div class="flex">
-                                                <span class="bg-gray-400 w-6 h-6 rounded-full mx-2" id="incomplete"></span>
-                                                <div class="w-24">{milestone}</div>
-                                            </div>
-                                        )
-                                    }
+                            this.state.milestones.map(milestone => {
+                                let color = ""
+                                if(milestone.status === 0) {
+                                    color = "bg-red-600";
+                                } else if(milestone.status === 1) {
+                                    color = "bg-yellow-500";
+                                } else if(milestone.status === 2) {
+                                    color = "bg-gray-500";
+                                    return null;
+                                } else if(milestone.status === 3) {
+                                    color = "bg-green-500";
+                                    return null;
                                 }
-                            )
-                        }
-                        {
-                            Object.keys(SampleMilestones).map(milestone =>
-                                {
-                                    if(SampleMilestones[milestone]==3){
-                                        return(
-                                            <div class="flex">
-                                                <span class="bg-gray-400 w-6 h-6 rounded-full mx-2" id="inprogress"></span>
-                                                <div class="w-24">{milestone}</div>
-                                            </div>
-                                        )
-                                    }
-                                }
-                            )
+                                    
+                                return(
+                                    <div class="flex">
+                                        <span className={`${color} w-6 h-6 rounded-full mx-2`}></span>
+                                        <div class="w-24 truncate">{milestone.name}</div>
+                                    </div>
+                                )
+                            })
                         }
                     </div>
                     <button class="self-end mx-8 w-8 rounded-xl h-8 bg-red-400 focus:outline-none select-none" onClick={this.expandMenu.bind(this)}>V</button>
@@ -84,60 +80,25 @@ export default class MilestoneContainer extends Component {
                 <div class="flex flex-col items-center bg-gray-200 rounded-xl p-2 my-2 justify-center">
                     <div class="grid grid-cols-2 md:grid-cols-3 gap-x-20 gap-y-2 justify-items-start">
                         {
-                            Object.keys(SampleMilestones).map(milestone =>
-                                {
-                                    if(SampleMilestones[milestone]==2){
-                                        return(
-                                            <div class="flex">
-                                                <span class="bg-gray-400 w-6 h-6 rounded-full mx-2" id="incomplete"></span>
-                                                <div class="w-24">{milestone}</div>
-                                            </div>
-                                        )
-                                    }
+                            this.state.milestones.map(milestone => {
+                                let color = ""
+                                if(milestone.status === 0) {
+                                    color = "bg-red-600";
+                                } else if(milestone.status === 1) {
+                                    color = "bg-yellow-500";
+                                } else if(milestone.status === 2) {
+                                    color = "bg-gray-500";
+                                } else if(milestone.status === 3) {
+                                    color = "bg-green-500";
                                 }
-                            )
-                        }
-                        {
-                            Object.keys(SampleMilestones).map(milestone =>
-                                {
-                                    if(SampleMilestones[milestone]==3){
-                                        return(
-                                            <div class="flex">
-                                                <span class="bg-gray-400 w-6 h-6 rounded-full mx-2" id="inprogress"></span>
-                                                <div class="w-24">{milestone}</div>
-                                            </div>
-                                        )
-                                    }
-                                }
-                            )
-                        }
-                        {
-                            Object.keys(SampleMilestones).map(milestone =>
-                                {
-                                    if(SampleMilestones[milestone]==4){
-                                        return(
-                                            <div class="flex">
-                                                <span class="bg-gray-400 w-6 h-6 rounded-full mx-2" id="null"></span>
-                                                <div class="w-24">{milestone}</div>
-                                            </div>
-                                        )
-                                    }
-                                }
-                            )
-                        }
-                        {
-                            Object.keys(SampleMilestones).map(milestone =>
-                                {
-                                    if(SampleMilestones[milestone]==1){
-                                        return(
-                                            <div class="flex">
-                                                <span class="bg-gray-400 w-6 h-6 rounded-full mx-2" id="complete"></span>
-                                                <div class="w-24">{milestone}</div>
-                                            </div>
-                                        )
-                                    }
-                                }
-                            )
+                                    
+                                return(
+                                    <div class="flex">
+                                        <span className={`${color} w-6 h-6 rounded-full mx-2`}></span>
+                                        <div class="w-24">{milestone.name}</div>
+                                    </div>
+                                )
+                            })
                         }
                     </div>
                     <button class="self-end mx-8 w-8 rounded-xl h-8 bg-red-400 focus:outline-none select-none" onClick={this.collapseMenu.bind(this)}>^</button>
