@@ -82,20 +82,20 @@ export default class Student extends Component {
             "Complete DNP Final Project Defense": "Committee members sign approval in Gradforms\nhttps://gradsch.osu.edu/calendar/graduation  \nBy deadline of term of graduation",
             "Knowledge Bank submission": "https://u.osu.edu/dnpnursinghandbook2020/knowledge-bank-submission/\nFollowing successful defense"
         }
-        const sortedMilestones = Object.fromEntries(
-            Object.entries(milestones).sort(([,a],[,b]) => a-b)
-        );
+        const sortedMilestones = this.state.milestones.sort((a,b) => a.status-b.status);
 
-        var count = 0;
+        let count = 0;
 
-        for (const [key, val] of Object.entries(milestones)){
-            if(val==3){
+        sortedMilestones.forEach((milestone) => {
+            console.log(milestone);
+            if(milestone.status===3){
                 count+=1;
             }
-        }
+        });
 
-        var width = (count/14) * 100;
-        var setWidth = width +"%";
+        console.log("count", count);
+        let width = (count/14) * 100;
+        let setWidth = width +"%";
 
         return (
             <div>
@@ -112,59 +112,59 @@ export default class Student extends Component {
                     </h2>
                 </div>
                 <CollapsibleComponent class="m-5  p-5 text-black font-bold text-center text-lg bg-gray-400 bg-opacity-30 grid grid-cols-4 gap-5">
-                        {Object.entries(sortedMilestones).map((milestone) => {
-                            if(milestone[1] == 0) {
+                        {sortedMilestones.map((milestone) => {
+                            if(milestone.status === 0) {
                                 return (
                                     <div>
                                         <CollapsibleHead class="pb-5 pl-5 bg-white rounded-lg">
                                             <div class="my-3.5 circle bg-red-600 align-middle float-left"></div>
-                                            <div class="w-10/12 float-right">{milestone[0]}</div>
+                                            <div class="w-10/12 float-right">{milestone.description}</div>
                                         </CollapsibleHead>
                                         <CollapsibleContent class="bg-gray-400 bg-opacity-30">
                                             <p >{Object.entries(descriptions).map((desc) => {
-                                                if(milestone[0]==desc[0]){
+                                                if(milestone.description===desc[0]){
                                                     return(
                                                         <div>{desc[1]}</div>
                                                     )
-                                                }
+                                                } else return null;
                                             })}
                                             </p>
                                         </CollapsibleContent>
                                     </div>
                                 )
-                            }else if(milestone[1] == 1) {
+                            }else if(milestone.status === 1) {
                                 return (
                                     <div>
                                         <CollapsibleHead class="pb-5 pl-5 bg-white rounded-lg">
                                             <div class="my-3.5 circle bg-yellow-500 align-middle float-left"></div>
-                                            <div class="w-10/12 float-right">{milestone[0]}</div>
+                                            <div class="w-10/12 float-right">{milestone.description}</div>
                                         </CollapsibleHead>
                                         <CollapsibleContent>
                                             <p >{Object.entries(descriptions).map((desc) => {
-                                                if(milestone[0]==desc[0]){
+                                                if(milestone.description === desc[0]){
                                                     return(
                                                         <div>{desc[1]}</div>
                                                     )
-                                                }
+                                                } else return null;
                                             })}
                                             </p>
                                         </CollapsibleContent>
                                     </div>
                                 )
-                            }else if(milestone[1] == 2) {
+                            }else if(milestone.status === 2) {
                                 return (
                                     <div>
                                         <CollapsibleHead class="pb-5 pl-5 bg-white rounded-lg">
                                             <div class="my-3.5 circle bg-gray-500 align-middle float-left"></div>
-                                            <div class="w-10/12 float-right">{milestone[0]}</div>
+                                            <div class="w-10/12 float-right">{milestone.description}</div>
                                         </CollapsibleHead>
                                         <CollapsibleContent>
                                             <p >{Object.entries(descriptions).map((desc) => {
-                                                if(milestone[0]==desc[0]){
+                                                if(milestone.description===desc[0]){
                                                     return(
                                                         <div>{desc[1]}</div>
                                                     )
-                                                }
+                                                } else return null;
                                             })}
                                             </p>
                                         </CollapsibleContent>
@@ -175,15 +175,15 @@ export default class Student extends Component {
                                     <div>
                                         <CollapsibleHead class="pb-5 pl-5 bg-white rounded-lg">
                                             <div class="my-3.5 circle bg-green-500 align-middle float-left"></div>
-                                            <div class="w-10/12 float-right">{milestone[0]}</div>
+                                            <div class="w-10/12 float-right">{milestone.description}</div>
                                         </CollapsibleHead>
                                         <CollapsibleContent>
                                             <p >{Object.entries(descriptions).map((desc) => {
-                                                if(milestone[0]==desc[0]){
+                                                if(milestone.description === desc[0]){
                                                     return(
                                                         <div>{desc[1]}</div>
                                                     )
-                                                }
+                                                } else return null;
                                             })}
                                             </p>
                                         </CollapsibleContent>
