@@ -7,18 +7,7 @@ export default class MilestoneContainer extends Component {
         super(props);
         this.state = {
             expanded: false,
-            isLoading: true
         }
-    }
-
-    componentDidMount() {
-        const urlMilestone = `http://localhost:3001/milestones/${this.props.student}`;
-            fetch(urlMilestone)
-                .then(res => res.json())
-                .then(milestones => {
-                    this.setState({ milestones: milestones, isLoading: false });
-                    console.log(this.state.milestones);
-                });
     }
 
     componentDidUpdate(prevProps){
@@ -40,16 +29,12 @@ export default class MilestoneContainer extends Component {
     }
     
     render(){
-        if(this.state.isLoading) {
-            return null;
-        }
-
         if(!this.state.expanded){
             return(
                 <div class="flex flex-col items-center bg-gray-200 rounded-xl p-2 my-2 justify-center">
                     <div class="grid grid-cols-2 md:grid-cols-3 gap-x-20 gap-y-2 justify-items-start">
                         {
-                            this.state.milestones.map(milestone => {
+                            this.props.milestones.map(milestone => {
                                 let color = ""
                                 if(milestone.status === 0) {
                                     color = "incomplete";
@@ -80,7 +65,7 @@ export default class MilestoneContainer extends Component {
                 <div class="flex flex-col items-center bg-gray-200 rounded-xl p-2 my-2 justify-center">
                     <div class="grid grid-cols-2 md:grid-cols-3 gap-x-20 gap-y-2 justify-items-start">
                         {
-                            this.state.milestones.map(milestone => {
+                            this.props.milestones.map(milestone => {
                                 let status = ""
                                 if(milestone.status === 0) {
                                     status = "incomplete";

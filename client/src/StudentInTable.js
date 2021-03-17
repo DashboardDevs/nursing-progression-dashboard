@@ -22,13 +22,19 @@ export default class StudentInTable extends Component {
                     console.log(this.state.milestones);
                 });
     }
-    
-    increment_progress() {
-        this.setState({
-            progress : (this.state.progress + 1)
-        })
-    }
 
+    componentDidUpdate(prevProps){
+        if(prevProps.student != this.props.student){
+            const urlMilestone = `http://localhost:3001/milestones/${this.props.student.id}`;
+            fetch(urlMilestone)
+                .then(res => res.json())
+                .then(milestones => {
+                    this.setState({ milestones: milestones, isLoading: false });
+                    console.log(this.state.milestones);
+                });
+        }
+    }
+    
 
     render(){
 
@@ -36,6 +42,12 @@ export default class StudentInTable extends Component {
         if(this.state.isLoading) {
             return null;
         } else {
+            var count = 0;
+            this.state.milestones.map(milestone => {
+                if (milestone.status === 3){
+                    count++
+                }
+            })
             return(
                 <div class="flex flex-col border mb-2 w-full p-2 bg-white rounded-lg">
                     <div class="flex items-center">
@@ -43,16 +55,11 @@ export default class StudentInTable extends Component {
                             <div class=" bg-gray-200 mx-2 h-4 w-full rounded-full">
                             {/* Progress Bar */}
                             {
-                                this.state.milestones.map(milestone => {
-                                    if (milestone.status === 3){
-                                        this.state.progress++
-                                    }
-                                })
                             }
-                            <div class={`bg-green-500 h-full w-${this.state.progress}/14 rounded-full`}></div>
+                            <div class={`bg-green-500 h-full w-${count}/14 rounded-full`}></div>
                             </div>
                     </div>
-                    <MilestoneContainer student={this.props.student.id}/>
+                    <MilestoneContainer milestones = {this.state.milestones} student={this.props.student.id}/>
                 </div>
             )
         }
