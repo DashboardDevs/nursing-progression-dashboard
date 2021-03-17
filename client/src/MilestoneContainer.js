@@ -52,20 +52,20 @@ export default class MilestoneContainer extends Component {
                             this.state.milestones.map(milestone => {
                                 let color = ""
                                 if(milestone.status === 0) {
-                                    color = "bg-red-600";
+                                    color = "incomplete";
                                 } else if(milestone.status === 1) {
-                                    color = "bg-yellow-500";
+                                    color = "inprogress";
                                 } else if(milestone.status === 2) {
-                                    color = "bg-gray-500";
+                                    color = "unstarted";
                                     return null;
                                 } else if(milestone.status === 3) {
-                                    color = "bg-green-500";
+                                    color = "complete";
                                     return null;
                                 }
                                     
                                 return(
                                     <div class="flex">
-                                        <span className={`${color} w-6 h-6 rounded-full mx-2`}></span>
+                                        <span className="w-6 h-6 rounded-full mx-2" id={color}></span>
                                         <div class="w-24 truncate">{milestone.name}</div>
                                     </div>
                                 )
@@ -81,21 +81,21 @@ export default class MilestoneContainer extends Component {
                     <div class="grid grid-cols-2 md:grid-cols-3 gap-x-20 gap-y-2 justify-items-start">
                         {
                             this.state.milestones.map(milestone => {
-                                let color = ""
+                                let status = ""
                                 if(milestone.status === 0) {
-                                    color = "bg-red-600";
+                                    status = "incomplete";
                                 } else if(milestone.status === 1) {
-                                    color = "bg-yellow-500";
+                                    status = "inprogress";
                                 } else if(milestone.status === 2) {
-                                    color = "bg-gray-500";
+                                    status = "unstarted";
                                 } else if(milestone.status === 3) {
-                                    color = "bg-green-500";
+                                    status = "complete";
                                 }
                                     
                                 return(
                                     <div class="flex">
-                                        <span className={`${color} w-6 h-6 rounded-full mx-2`}></span>
-                                        <div class="w-24">{milestone.name}</div>
+                                        <span className="w-6 h-6 rounded-full mx-2" id={status}></span>
+                                        <div class="w-24 overflow-hidden">{milestone.name}</div>
                                     </div>
                                 )
                             })
