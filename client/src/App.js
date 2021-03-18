@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  Link,
-  Redirect
+  Route
 } from "react-router-dom";
 import Student from './Student';
 import UpdateRequestForm from './UpdateRequestForm';
@@ -43,7 +41,7 @@ class App extends Component {
               <Advisor currentUser={this.state.currentUser}/>
             </div>
           </Route>
-          <Route path="/student">
+          <Route path="/student/:id">
             <div>
               <Logout handleUserLogout={this.handleUserLogout}/>
               <Student currentUser={this.state.currentUser}/>

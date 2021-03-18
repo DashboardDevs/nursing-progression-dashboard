@@ -19,3 +19,13 @@ exports.findByAdvisorId = (req, res) => {
         }
     })
 }
+
+exports.getStudentById = (req, res) => {
+    student.getStudentById(req.params.studentId, (err, data) => {
+        if (err) {
+            res.status(500).send({ error: "Error retrieving student data" });
+        } else {
+            res.send(data);
+        }
+    })
+}

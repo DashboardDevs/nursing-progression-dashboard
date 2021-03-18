@@ -49,7 +49,7 @@ export default class Login extends Component {
         if (!!this.props.currentUser && (this.props.currentUser.isAdvisor || this.props.currentUser.isAdmin)) {
             return <Redirect to="/advisor"></Redirect>
         } else if (!!this.props.currentUser) {
-            return <Redirect to="/student"></Redirect>
+            return <Redirect to={{pathname: `/student/${this.props.currentUser.id}`}}/>
         }
 
         return (
