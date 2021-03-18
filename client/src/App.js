@@ -35,7 +35,7 @@ class App extends Component {
     return (
       <Router>
         <Switch>
-          <Route path="/advisor">
+          <Route path="/advisor/:id">
             <div>
               <Logout handleUserLogout={this.handleUserLogout}/>
               <Advisor currentUser={this.state.currentUser}/>
