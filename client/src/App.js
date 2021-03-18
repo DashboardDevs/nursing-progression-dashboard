@@ -1,52 +1,69 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
+  Link,
+  Redirect
 } from "react-router-dom";
 import Student from './Student';
 import UpdateRequestForm from './UpdateRequestForm';
 import Advisor from './Advisor';
 import Login from './Login';
+import Logout from './Lougout';
 
-function App() {
-  return (
-    <Router>
-      <nav>
-        <ul class="border-0 border-b-2">
-          <li class="text-center">
-            <Link class="text-scarlet underline" to="/advisor">Advisor</Link>
-          </li>
-          <li class="text-center">
-            <Link class="text-scarlet underline" to="/student">Student</Link>
-          </li>
-        </ul>
-      </nav>
-      <Switch>
-        <Route path="/advisor">
-          <div>
-            <Advisor />
-          </div>
-        </Route>
-        <Route path="/student">
-          <div>
-            <Student />
-          </div>
-        </Route>
-        <Route path="/update">
-          <div>
-            <UpdateRequestForm />
-          </div>
-        </Route>
-        <Route exact path="/">
-          <div>
-            <Login />
-          </div>
-        </Route>
-      </Switch>
-    </Router>
-  );
+class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      currentUser: null
+    }
+
+    this.handleUserLogin = this.handleUserLogin.bind(this);
+    this.handleUserLogout = this.handleUserLogout.bind(this);
+  }
+
+  handleUserLogin(user) {
+    this.setState({currentUser: user});
+    console.log('app', user);
+  }
+
+  handleUserLogout() {
+    this.setState({currentUser: null});
+  }
+
+  render() {
+    return (
+      <Router>
+        <Switch>
+          <Route path="/advisor">
+            <div>
+              <Logout handleUserLogout={this.handleUserLogout}/>
+              <Advisor currentUser={this.state.currentUser}/>
+            </div>
+          </Route>
+          <Route path="/student">
+            <div>
+              <Logout handleUserLogout={this.handleUserLogout}/>
+              <Student currentUser={this.state.currentUser}/>
+            </div>
+          </Route>
+          <Route path="/update">
+            <div>
+              <Logout handleUserLogout={this.handleUserLogout}/>
+              <UpdateRequestForm />
+            </div>
+          </Route>
+          <Route exact path="/">
+            <div>
+              <Login currentUser={this.state.currentUser} handleUserLogin={this.handleUserLogin}/>
+            </div>
+          </Route>
+        </Switch>
+      </Router>
+    );
+  }
 }
 
 export default App;
