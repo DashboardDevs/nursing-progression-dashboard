@@ -14,7 +14,7 @@ export default class Logout extends Component {
     render() {
         return (
             <section>
-                <button className="m-2 py-1 px-3 rounded-md bg-scarlet text-white inline-block" onClick={this.handleUserLogout}>Log out</button>
+                <button id="Logout" className="m-2 py-1 px-3 rounded-md bg-scarlet text-white inline-block" onClick={this.handleUserLogout}>Log out</button>
                 <hr></hr>
             </section>
         )
