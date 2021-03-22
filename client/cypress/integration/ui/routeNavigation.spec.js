@@ -17,7 +17,7 @@ describe("Routes", () => {
       cy.location("pathname", { timeout: 60000 }).should("include", "/student");
     });
 
-    it("Logs into a student account, redirecting to the advisor page", () => {
+    it("Logs into an advisor account, redirecting to the advisor page", () => {
       cy.get("input[name='username']")
         .eq(0)
         .type('ackerman.249');

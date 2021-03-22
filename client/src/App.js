@@ -50,7 +50,7 @@ class App extends Component {
           <Route path="/update">
             <div>
               <Logout handleUserLogout={this.handleUserLogout}/>
-              <UpdateRequestForm />
+              <UpdateRequestForm currentUser={this.state.currentUser}/>
             </div>
           </Route>
           <Route exact path="/">

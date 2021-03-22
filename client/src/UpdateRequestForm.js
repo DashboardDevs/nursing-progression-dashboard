@@ -1,5 +1,6 @@
 import { comment } from 'postcss';
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 import './Form.css';
 
 export default class UpdateRequestForm extends Component {
@@ -27,6 +28,10 @@ export default class UpdateRequestForm extends Component {
       }
 
     render() {
+      if(this.props.currentUser === null) {
+        return <Redirect to="/"/>
+      }
+
         return (
             <div id="backdrop"class="m-5 p-5 text-center text-lg bg-gray-400 bg-opacity-30">
                 <form onSubmit={this.handleSubmit}>
