@@ -9,6 +9,7 @@ export default class Advisor extends Component {
     constructor(props) {
         super(props);
         this.handleSearchChange = this.handleSearchChange.bind(this);
+        this.loadStudents = this.loadStudents.bind(this);
         this.state = {
             students: [],
             filterText: ''
@@ -20,17 +21,18 @@ export default class Advisor extends Component {
     }
 
     componentDidMount() {
-        let path = window.location.pathname.split("/");
-        let id = path[path.length - 1];
+        this.loadStudents();
+    }
 
-        const url = `http://localhost:3001/student/advisor/${id}`
+    loadStudents() {
+        const url = `http://localhost:3001/student/advisor/${this.props.currentUser.id}`
         fetch(url)
             .then(res => res.json())
             .then(data => {
                 var visibleStudents = data;
                 this.setState({ students: visibleStudents });
                 console.log(this.state.students);
-            })
+            });
     }
 
     render() {
@@ -55,7 +57,7 @@ export default class Advisor extends Component {
                     <div class="flex flex-col items-center bg-gray-200 pt-4 rounded-lg max-h-96 overflow-y-hidden">
                         <div class="bg-red-700 rounded-lg w-3/5 text-white font-semibold py-2 text-center text-lg">Pending Reviews</div>
                         <div class="border-t w-9/12 border-gray-300 m-2"></div>
-                        <ReviewContainer currentUser={this.props.currentUser}></ReviewContainer>
+                        <ReviewContainer currentUser={this.props.currentUser} refresh={this.loadStudents}></ReviewContainer>
                     </div>
                 </div>
             </div>

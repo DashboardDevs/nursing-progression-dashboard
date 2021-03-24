@@ -11,8 +11,12 @@ export default class ReviewContainer extends Component {
     }
 
     componentDidMount() {
+        this.loadReviews();
+    }
+
+    loadReviews() {
         const url = `http://localhost:3001/milestones/reviews/${this.props.currentUser.id}`;
-        fetch(url)
+        return fetch(url)
             .then(res => res.json())
             .then(data => {
                 console.log(data);
@@ -31,13 +35,11 @@ export default class ReviewContainer extends Component {
             .catch(err => console.log(err))
             .then(() => {
                 this.setState({isLoading: true});
-                const reviewUrl = `http://localhost:3001/milestones/reviews/${this.props.currentUser.id}`;
-                fetch(reviewUrl)
-                    .then(res => res.json())
-                    .then(data => {
-                        this.setState({reviews: data, isLoading: false});
-            })
-            })
+                this.loadReviews()
+                    .then(() => {
+                        this.props.refresh();
+                    });
+            });
     }
 
     render() {
@@ -48,16 +50,14 @@ export default class ReviewContainer extends Component {
         return(
             <section className="flex flex-col items-center overflow-y-auto">
                 {this.state.reviews.map((r) => {
-                    r.isHidden = 'hidden';
                     return(
-                        <div className="flex flex-col items-center w-11/12 mb-2 bg-white rounded-lg p-1 border border-yellow">
-                            <div className="flex flex-col items-center text-center w-11/12">
-                                <h3 className="text-scarlet">{r.first_name} {r.last_name}</h3>
-                                <h4 className="text-gray-400">{r.name}</h4>
-                                <h4 className="text-gray-400">Submitted: TODO</h4>
-                                <button className="w-full bg-red-700 text-white mb-2 py-1 rounded-md" onClick={() => this.updateMilestone(r, 0)}>Decline</button>
-                                <button className="w-full bg-green-600 text-white mb-2 py-1 rounded-md" onClick={() => this.updateMilestone(r, 3)}>Approve</button>
-                            </div>
+                        <div className="flex flex-col items-center w-11/12 text-center mb-2 bg-white rounded-lg border border-yellow">
+                            <h3 className="text-scarlet">{r.first_name} {r.last_name}</h3>
+                            <h4 className="text-gray-400">{r.name}</h4>
+                            <h4 className="text-gray-400">Submitted: TODO</h4>
+                            <div className="w-full border border-b-1 mb-1"></div>
+                            <button className="w-11/12 bg-red-700 text-white mb-2 py-1 rounded-md" onClick={() => this.updateMilestone(r, 0)}>Decline</button>
+                            <button className="w-11/12 bg-green-600 text-white mb-2 py-1 rounded-md" onClick={() => this.updateMilestone(r, 3)}>Approve</button>
                         </div>
                     )
                 })}
