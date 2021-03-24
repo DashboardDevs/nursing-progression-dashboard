@@ -19,3 +19,14 @@ exports.getMilestonesForReviewForAdvisor = (req, res) => {
         }
     })
 }
+
+exports.updateMilestone = (req, res) => {
+    milestone.MilestoneReview.updateMilestone(req.body.m_id, req.body.s_id, req.body.status, (err, data) => {
+        if (err) {
+            res.status(500).send({ error: "Error updating milestone data" });
+        } else {
+            res.send(data);
+        }
+    })
+}
+

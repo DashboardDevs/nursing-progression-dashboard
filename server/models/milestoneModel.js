@@ -47,6 +47,19 @@ MilestoneReview.getMilestonesForReviewForAdvisor = (advisorId, result) => {
            return;
         }
     })
+}
+
+MilestoneReview.updateMilestone = (milestoneId, studentId, status, result) => {
+    const sql = `UPDATE student_milestone SET status = ${status} WHERE s_id = ${studentId} AND m_id = ${milestoneId};`;
+    db.query(sql, (err, res) => {
+        if (err) {
+            result(err, null);
+            return;
+        } else {
+           result(null,res)
+           return;
+        }
+    })
 
 }
 

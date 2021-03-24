@@ -49,39 +49,6 @@ export default class Student extends Component {
             return null;
         }
 
-        const milestones = {
-            "Initial meeting with advisor": 3,
-            "One page executive summary": 3,
-            "PICO-T question": 3,
-            "Committee discussion with advisor and selection": 3,
-            "Pre-Professional Exam meeting with full committee":0,
-            "Final Professional Exam document sent to committee": 1,
-            "Application for Professional Exam due in Gradforms": 0,
-            "Discuss Manuscript vs. multiple document format with committee": 2,
-            "Complete HSRD form with advisor": 2,
-            "Apply to graduate in Gradforms": 2,
-            "Schedule DNP Final Defense": 2,
-            "Committee informal meeting": 2,
-            "Complete DNP Final Project Defense": 2,
-            "Knowledge Bank submission": 2
-        }
-
-        const descriptions = {
-            "Initial meeting with advisor" : "Discuss topics such as: curriculum plan, compliance, milestones for full time v. part time students, the handbook, DNP project ideas and processes, immersion focus and hours, and program trajectory.",
-            "One page executive summary": "This should include a summary of immersion (clinical summary, setting, interests) and PICO-T question progress",
-            "PICO-T question": "Synthesis and outcome tables, literature review, paragraph about intervention, best practice recommendation",
-            "Committee discussion with advisor and selection": "implementation strategy, data collection",
-            "Pre-Professional Exam meeting with full committee": "a minimum of one formal meeting with your committee is strongly suggested.\nAtleast one month prior to exam",
-            "Final Professional Exam document sent to committee": "2 weeks prior to exam",
-            "Application for Professional Exam due in Gradforms": "due in gradforms, need to be approved by advisor\nhttps://gradforms.osu.edu/\n2 weeks prior to exam",
-            "Discuss Manuscript vs. multiple document format with committee": "committee members sign approval in the professional examination in Gradforms\nAfter completeing professional exam",
-            "Complete HSRD form with advisor": "discuss any other approvals (feasibility committee, data use, etc.)\nhttps://u.osu.edu/dnpnursinghandbook2020/human-subjects-research-determination-procedures \nAfter completing professional exam",
-            "Apply to graduate in Gradforms": "https://gradforms.osu.edu/\nOne term prior to graduation",
-            "Schedule DNP Final Defense": "https://u.osu.edu/dnpnursinghandbook2020/final-project/dnp-final-project-presentations-and-defense-procedures/",
-            "Committee informal meeting": "This is good for practice, but not required\nPrior to final defense",
-            "Complete DNP Final Project Defense": "Committee members sign approval in Gradforms\nhttps://gradsch.osu.edu/calendar/graduation  \nBy deadline of term of graduation",
-            "Knowledge Bank submission": "https://u.osu.edu/dnpnursinghandbook2020/knowledge-bank-submission/\nFollowing successful defense"
-        }
         const sortedMilestones = this.state.milestones.sort((a,b) => a.status-b.status);
 
         let count = 0;
