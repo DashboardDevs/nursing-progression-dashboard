@@ -28,9 +28,16 @@ export default class ReviewContainer extends Component {
             body: JSON.stringify({ m_id: milestone.id, s_id: milestone.s_id, status: status })
         };
         fetch(url, requestOptions)
-            .then(response => response.json())
-            .then(data => console.log(data));
-        console.log(milestone, status);
+            .catch(err => console.log(err))
+            .then(() => {
+                this.setState({isLoading: true});
+                const reviewUrl = `http://localhost:3001/milestones/reviews/${this.props.currentUser.id}`;
+                fetch(reviewUrl)
+                    .then(res => res.json())
+                    .then(data => {
+                        this.setState({reviews: data, isLoading: false});
+            })
+            })
     }
 
     render() {
