@@ -32,7 +32,7 @@ export default class MilestoneContainer extends Component {
         if(!this.state.expanded){
             return(
                 <div class="flex flex-col items-center bg-gray-200 rounded-xl p-2 my-2 justify-center">
-                    <div class="grid grid-cols-2 md:grid-cols-3 gap-x-20 gap-y-2 justify-items-start">
+                    <div class="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-5 gap-x-20 gap-y-2">
                         {
                             this.props.milestones.map(milestone => {
                                 let color = ""
@@ -62,8 +62,8 @@ export default class MilestoneContainer extends Component {
             )
         } else {
             return(
-                <div class="flex flex-col items-center bg-gray-200 rounded-xl p-2 my-2 justify-center">
-                    <div class="grid grid-cols-2 md:grid-cols-3 gap-x-20 gap-y-2 justify-items-start">
+                <div class="flex flex-col items-center bg-gray-200 rounded-xl p-2 my-2 ">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-20 gap-y-2 justify-items-start">
                         {
                             this.props.milestones.map(milestone => {
                                 let status = ""
@@ -80,7 +80,7 @@ export default class MilestoneContainer extends Component {
                                 return(
                                     <div class="flex">
                                         <span className="w-6 h-6 rounded-full mx-2" id={status}></span>
-                                        <div class="w-24 overflow-hidden">{milestone.name}</div>
+                                        <p class="overflow-hidden">{milestone.name}</p>
                                     </div>
                                 )
                             })
