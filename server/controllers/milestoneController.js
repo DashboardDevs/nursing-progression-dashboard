@@ -30,3 +30,13 @@ exports.updateMilestone = (req, res) => {
     })
 }
 
+exports.getAllMilestones = (req,res) =>{
+    milestone.Milestone.getAllMilestones((err,data)=>{
+        if (err) {
+            res.status(500).send({ error: "Error retrieving milestone data" });
+        } else {
+            res.send(data);
+        }
+    })
+}
+

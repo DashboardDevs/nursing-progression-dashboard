@@ -1,6 +1,6 @@
 const db = require("../db.js");
 
-const Milestone = milestone =>{
+const Milestone = milestone => {
     this.milestones = [milestone.map((m) => {
         return {
             id: m.id,
@@ -30,8 +30,8 @@ Milestone.getMilestonesForStudent = (studentId, result) => {
             result(err, null);
             return;
         } else {
-           result(null,res)
-           return;
+            result(null, res)
+            return;
         }
     })
 }
@@ -60,7 +60,19 @@ MilestoneReview.updateMilestone = (milestoneId, studentId, status, result) => {
            return;
         }
     })
+}
 
+Milestone.getAllMilestones = (result) => {
+    const sql = `SELECT id, name FROM milestones;`;
+    db.query(sql, (err, res) => {
+        if (err) {
+            result(err, null);
+            return;
+        } else {
+            result(null, res)
+            return;
+        }
+    })
 }
 
 module.exports = {Milestone, MilestoneReview};
