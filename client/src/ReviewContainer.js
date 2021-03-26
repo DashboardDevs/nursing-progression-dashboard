@@ -20,7 +20,8 @@ export default class ReviewContainer extends Component {
             .then(res => res.json())
             .then(data => {
                 console.log(data);
-                this.setState({reviews: data, isLoading: false});
+                const sorted = data.sort((a,b) => Date.parse(a.submitted) < Date.parse(b.submitted));
+                this.setState({reviews: sorted, isLoading: false});
             })
     }
 
