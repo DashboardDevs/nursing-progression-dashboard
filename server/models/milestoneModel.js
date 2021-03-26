@@ -16,6 +16,7 @@ const MilestoneReview = milestone =>{
         return {
             id: m.id,
             name: m.name,
+            submitted: m.submitted,
             s_id: m.s_id,
             s_fName: m.first_name,
             s_lName: m.last_name
@@ -37,7 +38,7 @@ Milestone.getMilestonesForStudent = (studentId, result) => {
 }
 
 MilestoneReview.getMilestonesForReviewForAdvisor = (advisorId, result) => {
-    const sql = `SELECT M.id, M.name, U.id AS s_id, U.first_name, U.last_name FROM users AS U, milestones AS M, student_milestone AS SM WHERE U.id = SM.s_id AND SM.m_id = m.id AND SM.status = 1 AND SM.s_id IN (SELECT id FROM users WHERE users.advisor_id = ${advisorId})`;
+    const sql = `SELECT M.id, M.name, SM.submitted, U.id AS s_id, U.first_name, U.last_name FROM users AS U, milestones AS M, student_milestone AS SM WHERE U.id = SM.s_id AND SM.m_id = m.id AND SM.status = 1 AND SM.s_id IN (SELECT id FROM users WHERE users.advisor_id = ${advisorId})`;
     db.query(sql, (err, res) => {
         if (err) {
             result(err, null);
@@ -50,7 +51,8 @@ MilestoneReview.getMilestonesForReviewForAdvisor = (advisorId, result) => {
 }
 
 MilestoneReview.updateMilestone = (milestoneId, studentId, status, result) => {
-    const sql = `UPDATE student_milestone SET status = ${status} WHERE s_id = ${studentId} AND m_id = ${milestoneId};`;
+    const sql = status === 3 ? `UPDATE student_milestone SET status = ${status}, completed = current_date() WHERE s_id = ${studentId} AND m_id = ${milestoneId};`
+        : `UPDATE student_milestone SET status = ${status}, submitted = null WHERE s_id = ${studentId} AND m_id = ${milestoneId};`;
     db.query(sql, (err, res) => {
         if (err) {
             result(err, null);
