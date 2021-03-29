@@ -63,12 +63,19 @@ export default class Student extends Component {
         console.log("count", count);
         let width = (count/14) * 100;
         let setWidth = width +"%";
+        //Set the link to the form to the update form for advisors or the request form for students
+        let formLink;
+        if(this.props.currentUser.perms === 1){
+            formLink = "/update";
+        }else{
+            formLink = "/request";
+        }
 
         return (
             <div>
                 <div class="w-full flex space-x-2">
                     <h1 class="w-10/12 text-scarlet m-5 text-4xl">{this.state.student.last_name}, {this.state.student.first_name}</h1>
-                    <Link class="bg-scarlet text-white py-2 px-6 rounded-3xl h-1/2 mt-5" to="/update">Update Milestones</Link>
+                    <Link class="bg-scarlet text-white py-2 px-6 rounded-3xl h-1/2 mt-5" to={{pathname: formLink, student:this.state.student}}>Update Milestones</Link>
                 </div>
                 <div id="progressBar" >
                     <div id="bar" style={{width: setWidth}}></div>

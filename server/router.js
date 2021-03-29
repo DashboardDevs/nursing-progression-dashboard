@@ -10,6 +10,7 @@ router.get('/student', studentController.getAllStudents);
 router.get('/milestones/:studentId', milestoneController.getMilestonesForStudent);
 router.put('/milestones/update', milestoneController.updateMilestone);
 router.get('/milestones/reviews/:advisorId', milestoneController.getMilestonesForReviewForAdvisor);
+router.get('/milestones',milestoneController.getAllMilestones);
 router.get('/login', userController.getAccountDetails);
 
 module.exports = router;
