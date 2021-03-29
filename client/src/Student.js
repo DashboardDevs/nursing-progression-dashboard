@@ -77,6 +77,7 @@ export default class Student extends Component {
                     <h1 class="w-10/12 text-scarlet m-5 text-4xl">{this.state.student.last_name}, {this.state.student.first_name}</h1>
                     <Link class="bg-scarlet text-white py-2 px-6 rounded-3xl h-1/2 mt-5" to={{pathname: formLink, student:this.state.student}}>Update Milestones</Link>
                 </div>
+                <p id="gradDate" class="w-10/12 text-black text-xl">Expected Graduation Date: {this.state.student.graduation_date.slice(5,7)}/{this.state.student.graduation_date.slice(8,10)}/{this.state.student.graduation_date.slice(0,4)}</p>
                 <div id="progressBar" >
                     <div id="bar" style={{width: setWidth}}></div>
                 </div>
