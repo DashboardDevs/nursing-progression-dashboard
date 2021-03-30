@@ -40,5 +40,5 @@ describe("Milestone Controller", () => {
       })
   });
 
-  // Need to add update tests - need to be able to clean up database after running it though
+  // If we want to add update tests we need to be able to clean up database after running it
 });

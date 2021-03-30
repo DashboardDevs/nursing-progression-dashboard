@@ -25,7 +25,6 @@ export default class ReviewContainer extends Component {
             })
     }
 
-    // Need separate function for decline and approve milestone
     updateMilestone(milestone, status) {
         const url = `http://localhost:3001/milestones/update`;
         const requestOptions = {
