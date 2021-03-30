@@ -30,6 +30,26 @@ exports.updateMilestone = (req, res) => {
     })
 }
 
+exports.updateMilestoneStudent = (req, res) => {
+    milestone.MilestoneReview.updateMilestoneStudent(req.body.m_id, req.body.s_id, (err, data) => {
+        if (err) {
+            res.status(500).send({ error: "Error updating milestone data" });
+        } else {
+            res.send(data);
+        }
+    })
+}
+
+exports.getMilestoneStatusStudent = (req, res) => {
+    milestone.MilestoneReview.getMilestoneStatus(req.body.m_id, req.body.s_id, (err, data) => {
+        if (err) {
+            res.status(500).send({ error: "Error updating milestone data" });
+        } else {
+            res.send(data);
+        }
+    })
+}
+
 exports.getAllMilestones = (req,res) =>{
     milestone.Milestone.getAllMilestones((err,data)=>{
         if (err) {
