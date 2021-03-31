@@ -12,13 +12,12 @@ class UpdateRequestForm extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
       }
       componentDidMount() {
-        const url = `http://localhost:3001/milestones`;
+        const url = `http://localhost:3001/student/milestones/${this.props.location.student.id}`;
         fetch(url)
             .then(res => res.json())
             .then(data => {
                 this.setState({ milestones: data });
             })
-            console.log("student: "+ this.props.location.student.id);
       }
       
       handleMilestoneChange(event) {

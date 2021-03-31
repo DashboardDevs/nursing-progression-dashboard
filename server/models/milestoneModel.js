@@ -74,18 +74,19 @@ MilestoneReview.updateMilestoneStudent = (milestoneId, studentId, result) => {
         }
     })
 }
-// MilestoneReview.getMilestonesStudent = (milestoneId, studentId, result) => {
-//     const sql = `SELECT id FROM student_milestone WHERE s_id = ${studentId} AND m_id = ${milestoneId} AND status = 2;`;
-//     db.query(sql, (err, res) => {
-//         if (err) {
-//             result(err, null);
-//             return;
-//         } else {
-//            result(null,res)
-//            return;
-//         }
-//     })
-// }
+
+MilestoneReview.getRedMilestonesStudent = (studentId, result) => {
+    const sql =  `SELECT M.id, M.name FROM nursingdb.milestones AS M INNER JOIN nursingdb.student_milestone AS SM ON M.id = SM.m_id WHERE SM.s_id =${studentId} AND SM.status = 0`;
+    db.query(sql, (err, res) => {
+        if (err) {
+            result(err, null);
+            return;
+        } else {
+           result(null,res);
+           return;
+        }
+    })
+}
 
 Milestone.getAllMilestones = (result) => {
     const sql = `SELECT id, name FROM milestones;`;
