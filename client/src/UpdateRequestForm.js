@@ -1,14 +1,13 @@
-import { comment } from 'postcss';
+//import { comment } from 'postcss';
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, withRouter } from 'react-router-dom';
 import './Form.css';
 
-export default class UpdateRequestForm extends Component {
+class UpdateRequestForm extends Component {
 
     constructor(props) {
         super(props);
         this.state = {value: -1, milestones :[], status: -1, submitted: false};
-    
         this.handleMilestoneChange = this.handleMilestoneChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
       }
@@ -19,20 +18,21 @@ export default class UpdateRequestForm extends Component {
             .then(data => {
                 this.setState({ milestones: data });
             })
-    }
-
+            console.log("student: "+ this.props.location.student.id);
+      }
+      
       handleMilestoneChange(event) {
-        console.log(this, "change")
         this.setState({value: event.target.value});
       }
 
       handleSubmit(event) {
-        if (this.state.value == "-1") {
+        if (this.state.value === "-1") {
           alert("You must select a milestone to update!");
           event.preventDefault();
         }
         else{
             const url = `http://localhost:3001/student/milestones/update`;
+            console.log('update');
             const requestOptions = {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
@@ -49,6 +49,7 @@ export default class UpdateRequestForm extends Component {
 
       updateMilestone(m_id) {
         const url = `http://localhost:3001/student/milestones/update`;
+        //console.log('update');
         const requestOptions = {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
@@ -63,7 +64,6 @@ export default class UpdateRequestForm extends Component {
 
 
     render() {
-      console.log(this, "render")
       if (this.props.currentUser === null) {
         return <Redirect to="/" />
       }else if (this.state.submitted) {
@@ -77,7 +77,7 @@ export default class UpdateRequestForm extends Component {
                 <div class="m-1 p-1">
                 <label for="milestone">Milestone to Update: </label>
                 <select id="milestone" value={this.state.milestoneValue} onChange={this.handleMilestoneChange}>
-                                <option disabled="disabled" value="-1" selected="true">Select Milestone</option>
+                                <option disabled="disabled" value="-1">Select Milestone</option>
                                 {this.state.milestones.map(milestone => (
                                     <option id={milestone.id} value={milestone.id}>{milestone.name}</option>
                                 ))}
@@ -96,3 +96,5 @@ export default class UpdateRequestForm extends Component {
         );
       }
 }
+
+export default withRouter(UpdateRequestForm);
