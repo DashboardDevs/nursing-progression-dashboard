@@ -18,3 +18,7 @@
 #unstarted {
     @apply bg-gray-500
 }
+table {
+    border-collapse: separate;
+    border-spacing: 40px;
+ }
