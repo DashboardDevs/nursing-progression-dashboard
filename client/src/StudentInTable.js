@@ -59,6 +59,7 @@ export default class StudentInTable extends Component {
                             <div class={`bg-green-500 h-full w-${count}/14 rounded-full`}></div>
                             </div>
                     </div>
+                    <div class="bg-gray-200 w-50 text-left font-semibold py-1 rounded-lg pl-6 mt-2">Expected Graduation Date: {this.props.student.graduation_date.slice(5,7)}/{this.props.student.graduation_date.slice(8,10)}/{this.props.student.graduation_date.slice(0,4)}</div>
                     <MilestoneContainer milestones = {this.state.milestones} student={this.props.student.id}/>
                 </div>
             )

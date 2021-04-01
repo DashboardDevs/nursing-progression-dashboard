@@ -51,7 +51,7 @@ export default class CollapsibleComponent extends React.Component {
     }
     
     render() {
-        return (<div id={'rcc'+this.props.name} class="grid grid-cols-4 gap-5 bg-gray-400 bg-opacity-30 m-5 p-5 rounded-lg">
+        return (<div id={'rcc'+this.props.name} class="grid grid-cols-4 gap-2 bg-white m-2 p-5 rounded-lg">
             {this.props.children}
         </div>
         )
