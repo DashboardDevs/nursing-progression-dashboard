@@ -7,12 +7,14 @@ class UpdateRequestForm extends Component {
 
     constructor(props) {
         super(props);
+        this._isMounted = false;
         this.state = {value: -1, milestones :[], status: -1, submitted: false};
         this.handleMilestoneChange = this.handleMilestoneChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
       }
       componentDidMount() {
         const url = `http://localhost:3001/student/milestones/${this.props.location.student.id}`;
+        this._isMounted = true;
         fetch(url)
             .then(res => res.json())
             .then(data => {
@@ -21,21 +23,24 @@ class UpdateRequestForm extends Component {
       }
       
       handleMilestoneChange(event) {
-        this.setState({value: event.target.value});
-      }
+        this.setState({ value: event.target.value });
+    }
 
-      handleSubmit(event) {
-        if (this.state.value === "-1") {
-          alert("You must select a milestone to update!");
-          event.preventDefault();
+    handleSubmit(event) {
+        if (this.state.milestoneValue == "-1") {
+            alert("You must select a milestone to update!");
+            event.preventDefault();
         }
-        else{
-            const url = `http://localhost:3001/student/milestones/update`;
-            console.log('update');
+        else {
+            const url = `http://localhost:3001/milestones/update`;
+            console.log("update");
+            console.log("m_id: ", this.state.value);
+            console.log("s_id: ", this.props.location.student.id);
+            
             const requestOptions = {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ m_id: this.state.value, s_id: this.props.location.student.id})
+                body: JSON.stringify({ m_id: this.state.value, s_id: this.props.location.student.id, status: 1 })
             };
             fetch(url, requestOptions)
                 .catch(err => console.log(err))
@@ -44,15 +49,14 @@ class UpdateRequestForm extends Component {
                 });
             event.preventDefault();
         }
-      }
+    }
 
-      updateMilestone(m_id) {
-        const url = `http://localhost:3001/student/milestones/update`;
-        //console.log('update');
+    updateMilestone(m_id, status) {
+        const url = `http://localhost:3001/milestones/update`;
         const requestOptions = {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ m_id: m_id, s_id: this.props.location.student.id})
+            body: JSON.stringify({ m_id: m_id, s_id: this.props.location.student.id, status: 1 })
         };
         fetch(url, requestOptions)
             .catch(err => console.log(err))
@@ -60,8 +64,9 @@ class UpdateRequestForm extends Component {
                 this.setState({ submitted: true });
             });
     }
-
-
+    componentWillUnmount() {
+      this._isMounted = false;
+    }
     render() {
       if (this.props.currentUser === null) {
         return <Redirect to="/" />
@@ -75,7 +80,7 @@ class UpdateRequestForm extends Component {
                 <form onSubmit={this.handleSubmit}>
                 <div class="m-1 p-1">
                 <label for="milestone">Milestone to Update: </label>
-                <select id="milestone" value={this.state.milestoneValue} onChange={this.handleMilestoneChange}>
+                <select id="milestone" value={this.state.value} onChange={this.handleMilestoneChange}>
                                 <option disabled="disabled" value="-1">Select Milestone</option>
                                 {this.state.milestones.map(milestone => (
                                     <option id={milestone.id} value={milestone.id}>{milestone.name}</option>

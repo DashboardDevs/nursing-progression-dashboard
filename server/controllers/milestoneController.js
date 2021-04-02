@@ -30,15 +30,6 @@ exports.updateMilestone = (req, res) => {
     })
 }
 
-exports.updateMilestoneStudent = (req, res) => {
-    milestone.MilestoneReview.updateMilestoneStudent(req.body.m_id, req.body.s_id, (err, data) => {
-        if (err) {
-            res.status(500).send({ error: "Error updating milestone data" });
-        } else {
-            res.send(data);
-        }
-    })
-}
 
 exports.getRedMilestonesStudent = (req, res) => {
     milestone.MilestoneReview.getRedMilestonesStudent(req.params.studentId, (err, data) => {
