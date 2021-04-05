@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Moment from 'moment';
 
 export default class ReviewContainer extends Component {
     constructor(props) {
@@ -20,7 +21,8 @@ export default class ReviewContainer extends Component {
             .then(res => res.json())
             .then(data => {
                 console.log(data);
-                this.setState({reviews: data, isLoading: false});
+                const sorted = data.sort((a,b) => Date.parse(a.submitted) < Date.parse(b.submitted));
+                this.setState({reviews: sorted, isLoading: false});
             })
     }
 
@@ -54,7 +56,7 @@ export default class ReviewContainer extends Component {
                         <div className="flex flex-col items-center w-11/12 text-center mb-2 bg-white rounded-lg border border-yellow">
                             <h3 className="text-scarlet">{r.first_name} {r.last_name}</h3>
                             <h4 className="text-gray-400">{r.name}</h4>
-                            <h4 className="text-gray-400">Submitted: TODO</h4>
+                            <h4 className="text-gray-400">Submitted: {Moment(r.submitted).format('MM/DD/YY')}</h4>
                             <div className="w-full border border-b-1 mb-1"></div>
                             <button className="w-11/12 bg-red-700 text-white mb-2 py-1 rounded-md" onClick={() => this.updateMilestone(r, 0)}>Decline</button>
                             <button className="w-11/12 bg-green-600 text-white mb-2 py-1 rounded-md" onClick={() => this.updateMilestone(r, 3)}>Approve</button>

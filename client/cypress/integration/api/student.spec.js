@@ -17,7 +17,7 @@ describe("Student Controller", () => {
   });
 
   it("Requests student accounts with a specific advisor id", () => {
-    const advisor_id = 1; // Adam Advisor advisor account
+    const advisor_id = 1001; // Adam Advisor advisor account
     cy.request(`${baseUrl}/advisor/${advisor_id}`).as("student_accounts");
 
     cy.get("@student_accounts").should(response => {
@@ -32,7 +32,7 @@ describe("Student Controller", () => {
   });
 
   it("Requests a student account with a specific id", () => {
-    const student_id = 6; // Bary Kaes
+    const student_id = 1; // Bary Kaes
     cy.request(`${baseUrl}/${student_id}`).as("student_account");
 
     cy.get("@student_account")
