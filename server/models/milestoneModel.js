@@ -59,19 +59,19 @@ MilestoneReview.updateMilestone = (milestoneId, studentId, status, result) => {
             return;
         } else {
             // Nest query instead?
-            // If status is set to complete find the prerequisite milestone
+            // If status is set to complete find the base milestone that the prereq unlocks
             if (status === 3) {
-                const prereq = `SELECT prereq_id FROM prerequisites WHERE base_id = ${milestoneId}`;
+                const prereq = `SELECT base_id FROM prerequisites WHERE prereq_id = ${milestoneId}`;
                 db.query(prereq, (err, res) => {
                     console.log(res);
                     if (err) {
                         console.log(err);
                         return;
-                    // if res is null then there is no prerequisite
+                    // if res is null then completed milestone is not a prerequisite
                     } else if (res.length){
-                        // Use the prereq_id to update the correct milestone
-                        console.log(res[0].prereq_id);
-                        const prereq_update = `UPDATE student_milestone SET status = 0 WHERE s_id = ${studentId} AND m_id = ${res[0].prereq_id}`;
+                        // Use the base_id to update the correct milestone
+                        console.log(res[0].base_id);
+                        const prereq_update = `UPDATE student_milestone SET status = 0 WHERE s_id = ${studentId} AND m_id = ${res[0].base_id}`;
                         db.query(prereq_update, (err, res) => {
                             if (err) {
                                 console.log(err);

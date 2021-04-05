@@ -50,7 +50,7 @@ export default class ReviewContainer extends Component {
         }
 
         return(
-            <section className="flex flex-col items-center overflow-y-auto">
+            <section className="flex flex-col w-full items-center overflow-y-auto">
                 {this.state.reviews.map((r) => {
                     return(
                         <div className="flex flex-col items-center w-11/12 text-center mb-2 bg-white rounded-lg border border-yellow">
