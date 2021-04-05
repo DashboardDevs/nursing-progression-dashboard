@@ -64,7 +64,7 @@ export default class Student extends Component {
         let width = (count/14) * 100;
         let setWidth = width +"%";
         //Set the link to the form to the update form for advisors or the request form for students
-        let formLink;
+        let formLink = this.props.currentUser.perms === 0 ? '/request' : '/update';
         
         if(this.props.currentUser.perms==0){
             return (
