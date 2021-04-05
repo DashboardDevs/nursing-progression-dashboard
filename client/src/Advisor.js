@@ -47,8 +47,12 @@ export default class Advisor extends Component {
                 <div class="flex flex-col mx-2 w-full lg:w-9/12">
                     <div class="grid grid-cols-2">
                         <div class="text-xl font-semibold">Student Milestone Dashboard</div>
-                        <div class="flex justify-self-end items-center justify-center bg-gray-200 rounded-full px-8 my-1 text-gray-400">
-                            <SearchBar filterText={text} onTextChange={this.handleSearchChange}/>
+                        <div class="flex items-center justify-end">
+                            <input class="mx-1" type="checkbox" id="ViewAll"></input>
+                            <label class="mr-4" for="ViewAll">View All Students</label>
+                            <div class="flex justify-self-end items-center justify-center bg-gray-200 rounded-full px-8 my-1 text-gray-400">
+                                <SearchBar filterText={text} onTextChange={this.handleSearchChange}/>
+                            </div>
                         </div>
                     </div>
                     <StudentTable searched={this.state.filterText} students={this.state.students}/>
