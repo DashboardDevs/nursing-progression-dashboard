@@ -8,6 +8,7 @@ import CollapsibleComponent from './CollapsibleComponent';
 import CollapsibleHead from './CollapsibleHead';
 import CollapsibleContent from './CollapsibleContent';
 import AdvisorNotesComponent from './AdvisorNotesComponent';
+import AddNotesComponent from './AddNotesComponent';
 
 export default class Student extends Component { 
 
@@ -151,6 +152,9 @@ export default class Student extends Component {
                                 )
                             })}
                         </CollapsibleComponent>
+                    </div>
+                    <div>
+                        <AddNotesComponent student = {this.state.student}></AddNotesComponent>
                     </div>
                     <div>
                     <AdvisorNotesComponent student = {this.state.student} >

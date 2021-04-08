@@ -15,5 +15,6 @@ router.put('/milestones/update', milestoneController.updateMilestone);
 router.get('/milestones/reviews/:advisorId', milestoneController.getMilestonesForReviewForAdvisor);
 router.get('/milestones',milestoneController.getAllMilestones);
 router.get('/login', userController.getAccountDetails);
+router.put('/addnote', notesController.addNote);
 
 module.exports = router;
