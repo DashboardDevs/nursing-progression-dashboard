@@ -70,14 +70,12 @@ MilestoneReview.updateMilestone = (milestoneId, studentId, status, result) => {
                     // if res is null then completed milestone is not a prerequisite
                     } else if (res.length){
                         // Use the base_id to update the correct milestone
-                        console.log(res[0].base_id);
                         const prereq_update = `UPDATE student_milestone SET status = 0 WHERE s_id = ${studentId} AND m_id = ${res[0].base_id}`;
                         db.query(prereq_update, (err, res) => {
                             if (err) {
                                 console.log(err);
                                 return;
                             } else {
-                                console.log(res);
                                 return;
                             }
                         })
