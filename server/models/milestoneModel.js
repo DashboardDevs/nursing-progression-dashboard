@@ -51,8 +51,19 @@ MilestoneReview.getMilestonesForReviewForAdvisor = (advisorId, result) => {
 }
 
 MilestoneReview.updateMilestone = (milestoneId, studentId, status, result) => {
-    const sql = status === 3 ? `UPDATE student_milestone SET status = ${status}, completed = current_date() WHERE s_id = ${studentId} AND m_id = ${milestoneId};`
-        : `UPDATE student_milestone SET status = ${status}, submitted = null WHERE s_id = ${studentId} AND m_id = ${milestoneId};`;
+    let sql = '';
+    
+    if(status === 3) {
+        // Complete
+        sql = `UPDATE student_milestone SET status = ${status}, completed = current_date() WHERE s_id = ${studentId} AND m_id = ${milestoneId};`;
+    } else if (status === 2 || status === 0) {
+        // Incomplete or Blocked
+        sql = `UPDATE student_milestone SET status = ${status}, submitted = null, completed = null WHERE s_id = ${studentId} AND m_id = ${milestoneId};`;
+    } else if (status === 1) {
+        // In progress
+        sql = `UPDATE student_milestone SET status = ${status}, submitted = current_date() WHERE s_id = ${studentId} AND m_id = ${milestoneId};`;
+    }
+
     db.query(sql, (err, res) => {
         if (err) {
             result(err, null);
