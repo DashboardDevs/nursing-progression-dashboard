@@ -26,7 +26,7 @@ Note.getNotesForStudent = (s_id, result)=> {
 }
 
 Note.addNote = (studentId, advisorId, note, date, result)=> {
-    const sql = `INSERT INTO notes (s_id, a_id, note, date) VALUES (${s_id},${a_id},${note},${date})`;
+    const sql = `INSERT INTO notes (s_id, a_id, note, date) VALUES (${studentId},${advisorId},"${note}",CURDATE())`;
     db.query(sql, (err, res) => {
         if (err) {
             result(err, null);
