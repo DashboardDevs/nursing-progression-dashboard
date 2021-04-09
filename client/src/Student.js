@@ -154,9 +154,6 @@ export default class Student extends Component {
                         </CollapsibleComponent>
                     </div>
                     <div>
-                        <AddNotesComponent student = {this.state.student}></AddNotesComponent>
-                    </div>
-                    <div>
                     <AdvisorNotesComponent student = {this.state.student} >
                     </AdvisorNotesComponent>
                     </div>
