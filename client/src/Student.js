@@ -8,7 +8,6 @@ import CollapsibleComponent from './CollapsibleComponent';
 import CollapsibleHead from './CollapsibleHead';
 import CollapsibleContent from './CollapsibleContent';
 import AdvisorNotesComponent from './AdvisorNotesComponent';
-import AddNotesComponent from './AddNotesComponent';
 
 export default class Student extends Component { 
 

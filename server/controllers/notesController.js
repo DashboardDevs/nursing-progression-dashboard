@@ -20,3 +20,14 @@ exports.addNote = (req, res) => {
         }
     })
 }
+
+exports.deleteNote = (req, res) => {
+    note.Note.deleteNote(req.body.studentId, req.body.note, (err, data) => {
+        if (err) {
+            console.log(err);
+            res.status(500).send({ error: "Failed to delete note" });
+        } else {
+            res.send(data);
+        }
+    })
+}

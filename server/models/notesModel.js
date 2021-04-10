@@ -38,4 +38,18 @@ Note.addNote = (studentId, advisorId, note, date, result)=> {
     })
 }
 
+Note.deleteNote = (studentId, note, result) => {
+    const sql = `DELETE FROM notes WHERE s_id = ${studentId} AND note = "${note}"`;
+    db.query(sql, (err, res) => {
+        if (err) {
+            console.log(err);
+            result(err, null);
+            return;
+        } else {
+            result(null, res)
+            return;
+        }
+    });
+}
+
 module.exports = {Note};
