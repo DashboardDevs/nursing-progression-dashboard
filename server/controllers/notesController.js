@@ -9,3 +9,25 @@ exports.getNotesForStudent = (req, res) => {
         }
     })
 }
+
+exports.addNote = (req, res) => {
+    note.Note.addNote(req.body.s_id, req.body.a_id, req.body.note, req.body.date,(err, data) => {
+        if (err) {
+            console.log(err);
+            res.status(500).send({ error: "Error adding note" });
+        } else {
+            res.send(data);
+        }
+    })
+}
+
+exports.deleteNote = (req, res) => {
+    note.Note.deleteNote(req.body.studentId, req.body.note, (err, data) => {
+        if (err) {
+            console.log(err);
+            res.status(500).send({ error: "Failed to delete note" });
+        } else {
+            res.send(data);
+        }
+    })
+}

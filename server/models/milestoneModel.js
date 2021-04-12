@@ -51,15 +51,51 @@ MilestoneReview.getMilestonesForReviewForAdvisor = (advisorId, result) => {
 }
 
 MilestoneReview.updateMilestone = (milestoneId, studentId, status, result) => {
-    const sql = status === 3 ? `UPDATE student_milestone SET status = ${status}, completed = current_date() WHERE s_id = ${studentId} AND m_id = ${milestoneId};`
-        : `UPDATE student_milestone SET status = ${status}, submitted = null WHERE s_id = ${studentId} AND m_id = ${milestoneId};`;
+    let sql = '';
+    
+    if(status === 3) {
+        // Complete
+        sql = `UPDATE student_milestone SET status = ${status}, completed = current_date() WHERE s_id = ${studentId} AND m_id = ${milestoneId};`;
+    } else if (status === 2 || status === 0) {
+        // Incomplete or Blocked
+        sql = `UPDATE student_milestone SET status = ${status}, submitted = null, completed = null WHERE s_id = ${studentId} AND m_id = ${milestoneId};`;
+    } else if (status === 1) {
+        // In progress
+        sql = `UPDATE student_milestone SET status = ${status}, submitted = current_date() WHERE s_id = ${studentId} AND m_id = ${milestoneId};`;
+    }
+
     db.query(sql, (err, res) => {
         if (err) {
             result(err, null);
             return;
         } else {
-           result(null,res)
-           return;
+            // Nest query instead?
+            // If status is set to complete find the base milestone that the prereq unlocks
+            if (status === 3) {
+                const prereq = `SELECT base_id FROM prerequisites WHERE prereq_id = ${milestoneId}`;
+                db.query(prereq, (err, res) => {
+                    console.log(res);
+                    if (err) {
+                        console.log(err);
+                        return;
+                    // if res is null then completed milestone is not a prerequisite
+                    } else if (res.length){
+                        // Use the base_id to update the correct milestone
+                        const prereq_update = `UPDATE student_milestone SET status = 0 WHERE s_id = ${studentId} AND m_id = ${res[0].base_id}`;
+                        db.query(prereq_update, (err, res) => {
+                            if (err) {
+                                console.log(err);
+                                return;
+                            } else {
+                                return;
+                            }
+                        })
+                    }
+                })
+            }
+
+            result(null,res);
+            return;
         }
     })
 }

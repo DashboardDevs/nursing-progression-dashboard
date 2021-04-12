@@ -12,7 +12,8 @@ export default class Advisor extends Component {
         this.loadStudents = this.loadStudents.bind(this);
         this.state = {
             students: [],
-            filterText: ''
+            filterText: '',
+            checked: false
         }
     }
 
@@ -25,14 +26,31 @@ export default class Advisor extends Component {
     }
 
     loadStudents() {
-        const url = `http://localhost:3001/student/advisor/${this.props.currentUser.id}`
-        fetch(url)
+        if (this.state.checked){
+            this.setState({ checked: false });
+            const url = `http://localhost:3001/student`
+            fetch(url)
             .then(res => res.json())
             .then(data => {
                 var visibleStudents = data;
                 this.setState({ students: visibleStudents });
                 console.log(this.state.students);
             });
+        } else{
+            this.setState({ checked: true });
+            const url = `http://localhost:3001/student/advisor/${this.props.currentUser.id}`
+            fetch(url)
+            .then(res => res.json())
+            .then(data => {
+                var visibleStudents = data;
+                this.setState({ students: visibleStudents });
+                console.log(this.state.students);
+            });
+        }
+    }
+
+    clicked(){
+        alert("FUDGE")
     }
 
     render() {
@@ -47,8 +65,12 @@ export default class Advisor extends Component {
                 <div class="flex flex-col mx-2 w-full lg:w-9/12">
                     <div class="grid grid-cols-2">
                         <div class="text-xl font-semibold">Student Milestone Dashboard</div>
-                        <div class="flex justify-self-end items-center justify-center bg-gray-200 rounded-full px-8 my-1 text-gray-400">
-                            <SearchBar filterText={text} onTextChange={this.handleSearchChange}/>
+                        <div class="flex items-center justify-end">
+                            <input class="mx-1" type="checkbox" id="ViewAll" onClick={this.loadStudents}></input>
+                            <label class="mr-4" for="ViewAll">View All Students</label>
+                            <div class="flex justify-self-end items-center justify-center bg-gray-200 rounded-full px-8 my-1 text-gray-400">
+                                <SearchBar filterText={text} onTextChange={this.handleSearchChange}/>
+                            </div>
                         </div>
                     </div>
                     <StudentTable searched={this.state.filterText} students={this.state.students}/>
