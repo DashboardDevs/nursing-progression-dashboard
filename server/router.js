@@ -21,5 +21,8 @@ router.get('/advisor', advisorController.getAllAdvisors);
 router.put('/committee',advisorController.addCommitteeMember);
 router.delete('/committee',advisorController.removeCommitteeMember);
 router.get('/login', userController.getAccountDetails);
+router.put('/notes', notesController.addNote);
+router.delete('/notes', notesController.deleteNote);
+
 
 module.exports = router;
