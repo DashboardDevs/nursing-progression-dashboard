@@ -71,6 +71,10 @@ describe("Log out", () => {
         .click();
       cy.wait(500);
 
+      cy.get("a[href='/student/29")
+        .eq(0)
+        .click();
+
       cy.get("a[href='/update']")
         .eq(0)
         .click();
