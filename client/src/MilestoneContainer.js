@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './index.css';
+import downarrow from './images/DownArrowPNG.png';
+import uparrow from './images/UpArrowPNG.png';
 
 export default class MilestoneContainer extends Component {
 
@@ -32,7 +34,7 @@ export default class MilestoneContainer extends Component {
         if(!this.state.expanded){
             return(
                 <div class="flex flex-col items-center bg-gray-200 rounded-xl p-2 my-2 justify-center">
-                    <div class="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-5 gap-x-20 gap-y-2">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-4 w-full justify-items-center md:justify-items-start">
                         {
                             this.props.milestones.map(milestone => {
                                 let color = ""
@@ -49,21 +51,23 @@ export default class MilestoneContainer extends Component {
                                 }
                                     
                                 return(
-                                    <div class="flex">
-                                        <span className="w-6 h-6 rounded-full mx-2" id={color}></span>
-                                        <div class="w-24 truncate">{milestone.name}</div>
+                                    <div class="flex h-12 flex-none overflow-hidden">
+                                        <span className="flex-none w-6 h-6 rounded-full mx-2" id={color}></span>
+                                        <div>{milestone.name}</div>
                                     </div>
                                 )
                             })
                         }
                     </div>
-                    <button class="self-end mx-8 w-8 rounded-xl h-8 bg-red-400 focus:outline-none select-none" onClick={this.expandMenu.bind(this)}>V</button>
+                    <button class="self-end mx-8 w-8 rounded-xl h-8 bg-red-400 focus:outline-none select-none" onClick={this.expandMenu.bind(this)}>
+                        <img class="p-2"src={downarrow}/>
+                    </button>
                 </div>
             )
         } else {
             return(
-                <div class="flex flex-col items-center bg-gray-200 rounded-xl p-2 my-2 ">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-20 gap-y-2 justify-items-start">
+                <div class="flex flex-col items-center bg-gray-200 rounded-xl p-2 my-2 justify-center">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-4 w-full justify-items-center md:justify-items-start">
                         {
                             this.props.milestones.map(milestone => {
                                 let status = ""
@@ -78,15 +82,17 @@ export default class MilestoneContainer extends Component {
                                 }
                                     
                                 return(
-                                    <div class="flex">
-                                        <span className="w-6 h-6 rounded-full mx-2" id={status}></span>
-                                        <p class="overflow-hidden">{milestone.name}</p>
+                                    <div class="flex h-12 flex-none overflow-hidden">
+                                        <span className="flex-none w-6 h-6 rounded-full mx-2" id={status}></span>
+                                        <p>{milestone.name}</p>
                                     </div>
                                 )
                             })
                         }
                     </div>
-                    <button class="self-end mx-8 w-8 rounded-xl h-8 bg-red-400 focus:outline-none select-none" onClick={this.collapseMenu.bind(this)}>^</button>
+                    <button class="self-end mx-8 w-8 rounded-xl h-8 bg-red-400 focus:outline-none select-none" onClick={this.collapseMenu.bind(this)}>
+                        <img class="p-2"src={uparrow}/>
+                    </button>
                 </div>
             )
         }
