@@ -69,15 +69,15 @@ export default class StudentCommitteeList extends Component {
     render() {
         return (
             <div className="w-4/12 ml-5">
-                <div className="bg-gray-200 text-left font-semibold py-1 rounded-lg mt-3">
-                    <div className="text-xl">
-                        Committee Members:
-                    </div>
+                <div className="text-black mt-5 ml-1 mb-1 text-xl">
+                    Committee Members:
+                </div>
+                <div className="bg-gray-200 text-left font-semibold py-1 rounded-lg">
                     <div className="ml-3 mt-2">
                         {this.state.committee.map(member => (
                             <div >
                                 <span >{member.first_name} {member.last_name}</span>
-                                <button className="float-right mr-2" onClick={() => this.removeMember(member.id)}>X</button>
+                                <button className="float-right mr-3" onClick={() => this.removeMember(member.id)}>X</button>
                             </div>
                         ))}
                     </div>
@@ -91,7 +91,7 @@ export default class StudentCommitteeList extends Component {
                                     }
                                 })}
                             </select>
-                            <button className="bg-white textgray-400 px-3 rounded-3xl float-right mr-1" onClick={this.addNewMember}>Add Member</button>
+                            <button className="bg-white textgray-400 px-3 rounded-3xl float-right mr-2" onClick={this.addNewMember}>Add Member</button>
                         </div>
                 </div>
             </div>
