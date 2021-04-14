@@ -10,6 +10,7 @@ export default class Advisor extends Component {
         super(props);
         this.handleSearchChange = this.handleSearchChange.bind(this);
         this.loadStudents = this.loadStudents.bind(this);
+        this.clickButton = this.clickButton.bind(this);
         this.state = {
             students: [],
             filterText: '',
@@ -27,7 +28,6 @@ export default class Advisor extends Component {
 
     loadStudents() {
         if (this.state.checked){
-            this.setState({ checked: false });
             const url = `http://localhost:3001/student`
             fetch(url)
             .then(res => res.json())
@@ -37,7 +37,6 @@ export default class Advisor extends Component {
                 console.log(this.state.students);
             });
         } else{
-            this.setState({ checked: true });
             const url = `http://localhost:3001/student/advisor/${this.props.currentUser.id}`
             fetch(url)
             .then(res => res.json())
@@ -46,6 +45,15 @@ export default class Advisor extends Component {
                 this.setState({ students: visibleStudents });
                 console.log(this.state.students);
             });
+        }
+    }
+    
+    
+    clickButton(){
+        if (this.state.checked){
+            this.setState({ checked: false },this.loadStudents);
+        } else{
+            this.setState({ checked: true },this.loadStudents);
         }
     }
 
@@ -62,7 +70,7 @@ export default class Advisor extends Component {
                     <div class="grid grid-cols-1 md:grid-cols-2">
                         <div class="hidden md:flex text-xl font-semibold items-center">Student Milestone Dashboard</div>
                         <div class="flex items-center justify-center md:justify-end">
-                            <input class="mx-1" type="checkbox" id="ViewAll" onClick={this.loadStudents}></input>
+                            <input class="mx-1" type="checkbox" checked={this.state.checked} id="ViewAll" onClick={this.clickButton}></input>
                             <label class="mr-4" for="ViewAll">View All Students</label>
                             <div class="flex justify-self-end items-center justify-center bg-gray-200 rounded-full px-8 my-1 text-gray-400">
                                 <SearchBar filterText={text} onTextChange={this.handleSearchChange}/>
