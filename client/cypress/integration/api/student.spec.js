@@ -47,4 +47,25 @@ describe("Student Controller", () => {
         expect(student.perms).to.eq(0);
       });
   });
+
+  it("Requests a student's committee members", () => {
+    const student_id = 1; // Bary Kaes
+    cy.request(`${baseUrl}/committee/${student_id}`).as("committee");
+
+    cy.get("@committee")
+      .then(response => {
+        expect(response.status).to.eq(200);
+        expect(response.body).to.have.length.of.at.most(3);
+
+        let committee_members = response.body;
+
+        committee_members.forEach(member => {
+          expect(member.id).not.to.eq(student_id);
+          expect(member.first_name).to.be.ok;
+          expect(member.last_name).to.be.ok;
+          expect(member.first_name).to.be.ok;
+          expect(member.dot_number).to.be.ok;
+        });
+      });
+  });
 });

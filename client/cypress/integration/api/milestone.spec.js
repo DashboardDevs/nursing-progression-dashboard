@@ -29,7 +29,6 @@ describe("Milestone Controller", () => {
         expect(res.status).to.eq(200);
 
         let milestones = res.body;
-        console.log(milestones);
 
         milestones.forEach(milestone => {
           expect(milestone.name).to.be.ok;
@@ -41,4 +40,5 @@ describe("Milestone Controller", () => {
   });
 
   // If we want to add update tests we need to be able to clean up database after running it
+  // Currently manually testing PUT/DELETE requests
 });

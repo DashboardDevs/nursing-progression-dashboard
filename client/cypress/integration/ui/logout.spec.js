@@ -37,7 +37,7 @@ describe("Log out", () => {
       cy.location("pathname", { timeout: 60000 }).should("eq", "/");
     });
 
-    it("Logs out from the update page", () => {
+    it("Logs out from the update request page (student)", () => {
       cy.get("input[name='username']")
         .eq(0)
         .type('kaes.387');
@@ -48,6 +48,32 @@ describe("Log out", () => {
         .eq(0)
         .click();
       cy.wait(500);
+
+      cy.get("a[href='/request']")
+        .eq(0)
+        .click();
+
+      cy.location("pathname", { timeout: 60000 }).should("include", "/request");
+
+      cy.get("button#Logout").click();
+      cy.location("pathname", { timeout: 60000 }).should("eq", "/");
+    });
+
+    it("Logs out from the update page (advisor)", () => {
+      cy.get("input[name='username']")
+        .eq(0)
+        .type('ackerman.249');
+      cy.get("input[name='password']")
+        .eq(0)
+        .type('password')
+      cy.get("button[type='submit']")
+        .eq(0)
+        .click();
+      cy.wait(500);
+
+      cy.get("a[href='/student/29")
+        .eq(0)
+        .click();
 
       cy.get("a[href='/update']")
         .eq(0)
