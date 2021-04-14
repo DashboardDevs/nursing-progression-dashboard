@@ -86,27 +86,27 @@ export default class AdvisorNotesComponent extends Component {
         return(
             <div>
                 <div>
-                    <div className="text-black m-5 text-xl">
+                    <div className="text-black mt-5 ml-6 mb-1 text-xl">
                         Create New Note:
                     </div>
                     <div>
-                        <div class="bg-gray-200 rounded-xl ml-5 mr-5">
-                            <textarea id="noteSection" class="w-full bg-gray-200 rounded-xl pl-2" rows="5"></textarea>
+                        <div class="flex items-center bg-gray-200 rounded-xl ml-5 mr-5">
+                            <textarea id="noteSection" class="w-11/12 bg-gray-200 rounded-xl pl-2" rows="5"></textarea>
+                            <button class="ml-5 bg-white px-3 rounded-xl" onClick={this.addNote}>Save</button>
                         </div>
-                        <input id="submitbutton" type="submit" value="Submit" class="ml-5" onClick={this.addNote}/>
                     </div>
                 </div>
-                <div className="text-black m-5 text-xl">
+                <div className="text-black mt-5 ml-6 mb-1 text-xl">
                     Notes:
                 </div>
-                <div class="flex flex-col-3 items-center bg-gray-200 rounded-xl p-2 my-2 ml-5 mr-5 justify-center">
+                <div class="flex flex-col-3 items-center bg-gray-200 rounded-xl p-2 ml-5 mr-5 justify-center">
                     <table class="w-full">
                         {this.state.notes.map(note => (
                                             <tr>
                                             <td class="w-3/4">{note.note}</td>
                                             <td class="w-1/6">{Moment(note.date).format('MM-DD-YYYY')}</td>
                                             <td>
-                                                <button class="bg-gray-300 p-2 rounded-xl" onClick={() => this.deleteNote(note.note)}>delete</button>
+                                                <button class="bg-white px-3 rounded-3xl" onClick={() => this.deleteNote(note.note)}>Delete</button>
                                             </td>
                                             </tr>
                                         ))}
