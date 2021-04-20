@@ -20,6 +20,16 @@ exports.getCommitteeForStudent = (req, res) => {
     })
 }
 
+exports.getCommitteesForAdvisor = (req, res) => {
+    advisor.getCommitteesForAdvisor(req.params.advisorId, (err, data) => {
+        if (err) {
+            res.status(500).send({ error: "Error retrieving committee data" });
+        } else {
+            res.send(data);
+        }
+    })
+}
+
 exports.addCommitteeMember = (req, res) => {
     advisor.addCommitteeMember(req.body.studentId, req.body.memberId, (err, data) => {
         if (err) {

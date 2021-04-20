@@ -43,10 +43,11 @@ class UpdateMilestoneForm extends Component {
         }
         else {
             const url = `http://localhost:3001/milestones/update`;
+            const status = parseInt(this.state.statusValue);
             const requestOptions = {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ m_id: this.state.milestoneValue, s_id: this.props.location.student.id, status: this.state.statusValue })
+                body: JSON.stringify({ m_id: this.state.milestoneValue, s_id: this.props.location.student.id, status: status })
             };
             fetch(url, requestOptions)
                 .catch(err => console.log(err))

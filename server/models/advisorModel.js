@@ -37,6 +37,23 @@ Advisor.getCommitteeForStudent = (studentId, result) => {
     });
 }
 
+Advisor.getCommitteesForAdvisor = (advisorId, result) =>{
+    const sql = `SELECT *
+    FROM users
+    INNER JOIN committee_membership AS cm
+    ON cm.s_id = users.id
+    WHERE cm.member_id = ${advisorId};`;
+    db.query(sql, (err, res) => {
+        if (err) {
+            result(err, null);
+            return;
+        } else {
+            result(null, res)
+            return;
+        }
+    });
+}
+
 Advisor.addCommitteeMember = (studentId, advisorId, result) => {
     const sql = `INSERT INTO committee_membership (s_id, member_id) VALUES (${studentId},${advisorId})`;
     db.query(sql, (err, res) => {

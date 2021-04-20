@@ -3,6 +3,7 @@ import { Redirect } from 'react-router-dom';
 import SearchBar from './SearchBar';
 import StudentTable from './StudentTable';
 import ReviewContainer from './ReviewContainer';
+import AdvisorCommitteeList from './AdvisorCommitteeList';
 
 export default class Advisor extends Component {
 
@@ -79,13 +80,17 @@ export default class Advisor extends Component {
                     </div>
                     <StudentTable searched={this.state.filterText} students={this.state.students}/>
                 </div>
-                <div class="flex justify-center w-full lg:w-3/12 mt-8 lg:mx-6">
-                    <div class="flex flex-col w-11/12 items-center bg-gray-200 p-4 rounded-lg max-h-screen overflow-y-hidden">
+                <div class="flow-root flex justify-center w-full lg:w-3/12 mt-8 lg:mx-6">
+                    <div class="block flex flex-col w-11/12 items-center bg-gray-200 p-4 rounded-lg max-h-screen overflow-y-hidden">
                         <div class="bg-red-700 rounded-lg w-3/5 text-white font-semibold py-2 text-center text-lg">Pending Reviews</div>
                         <div class="border-t w-9/12 border-gray-300 m-2"></div>
                         <ReviewContainer currentUser={this.props.currentUser} refresh={this.loadStudents}></ReviewContainer>
                     </div>
+                    <div class="block flex flex-col w-11/12 bg-gray-200 p-4 rounded-lg mt-3">
+                        <AdvisorCommitteeList advisorId={this.props.currentUser.id}></AdvisorCommitteeList>
+                    </div>
                 </div>
+                
             </div>
         )
     }

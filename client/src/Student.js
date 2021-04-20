@@ -123,6 +123,7 @@ export default class Student extends Component {
                     <div class="flex">
                         <p id="gradDate" class="bg-gray-200 w-2/6 text-left font-semibold py-1 rounded-lg text-xl ml-5 mt-3">Expected Graduation Date: {this.state.student.graduation_date.slice(5, 7)}/{this.state.student.graduation_date.slice(8, 10)}/{this.state.student.graduation_date.slice(0, 4)}</p>
                         <div class="w-4/6 pr-8">
+                        <Link class="float-right bg-scarlet text-white py-2 px-6 rounded-3xl h-2/3 mt-5 mr-6" to={{ pathname: `/advisor/${this.props.currentUser.id}`}}>Back</Link>
                             <a class="float-right bg-gray-200 textgray-400 py-2 px-6 rounded-3xl h-2/3 mt-5 mr-6" href="https://login.microsoftonline.com/?whr=buckeyemailosu.onmicrosoft.com" rel="noreferrer" target="_blank">OneDrive</a>
                             <Link class="float-right bg-scarlet text-white py-2 px-6 rounded-3xl h-2/3 mt-5 mr-6" to={{ pathname: "/update", student: this.state.student }}>Update Milestones</Link>
                         </div>

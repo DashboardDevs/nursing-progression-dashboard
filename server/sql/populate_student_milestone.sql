@@ -280,6 +280,7 @@ INSERT INTO student_milestone(s_id, m_id, status) VALUES
 (20,12, 3),
 (20,13, 0),
 (20,14, 0),
+(20,15,0),
 (21,1, 3),
 (21,2, 3),
 (21,3, 3),

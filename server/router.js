@@ -17,6 +17,7 @@ router.get('/milestones/:studentId', milestoneController.getMilestonesForStudent
 router.put('/milestones/update', milestoneController.updateMilestone);
 router.get('/milestones/reviews/:advisorId', milestoneController.getMilestonesForReviewForAdvisor);
 router.get('/milestones',milestoneController.getAllMilestones);
+router.get('/advisor/committee/:advisorId', advisorController.getCommitteesForAdvisor);
 router.get('/advisor', advisorController.getAllAdvisors);
 router.put('/committee',advisorController.addCommitteeMember);
 router.delete('/committee',advisorController.removeCommitteeMember);

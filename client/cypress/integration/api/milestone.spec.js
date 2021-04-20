@@ -8,7 +8,7 @@ describe("Milestone Controller", () => {
     cy.get("@milestones")
       .then(res => {
         expect(res.status).to.eq(200);
-        expect(res.body).have.length(14);
+        expect(res.body).have.length(15);
 
         let milestones = res.body;
 
