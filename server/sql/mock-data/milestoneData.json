@@ -54,5 +54,9 @@
     {
         "name": "Knowledge Bank submission",
         "description": "https://u.osu.edu/dnpnursinghandbook2020/knowledge-bank-submission/ Following successful defense"
+    },
+    {
+        "name": "Clinical Question Approval",
+        "description": "Submit your clinical question to your advisor for approval."
     }
 ]

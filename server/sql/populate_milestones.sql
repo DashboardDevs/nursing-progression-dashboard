@@ -13,4 +13,5 @@ INSERT INTO milestones(name,description) VALUES
 ("Schedule DNP Final Defense","https://u.osu.edu/dnpnursinghandbook2020/final-project/dnp-final-project-presentations-and-defense-procedures/"),
 ("Committee informal meeting","This is good for practice, but not required Prior to final defense"),
 ("Complete DNP Final Project Defense","Committee members sign approval in Gradforms https://gradsch.osu.edu/calendar/graduation   By deadline of term of graduation"),
-("Knowledge Bank submission","https://u.osu.edu/dnpnursinghandbook2020/knowledge-bank-submission/ Following successful defense");
+("Knowledge Bank submission","https://u.osu.edu/dnpnursinghandbook2020/knowledge-bank-submission/ Following successful defense"),
+("Clinical Question Approval","Submit your clinical question to your advisor for approval.");

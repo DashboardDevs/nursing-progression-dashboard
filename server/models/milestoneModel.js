@@ -74,7 +74,6 @@ MilestoneReview.updateMilestone = (milestoneId, studentId, status, result) => {
             if (status === 3) {
                 const prereq = `SELECT base_id FROM prerequisites WHERE prereq_id = ${milestoneId}`;
                 db.query(prereq, (err, res) => {
-                    console.log(res);
                     if (err) {
                         console.log(err);
                         return;

@@ -1,1 +1,0 @@
-UPDATE student_milestone SET submitted = current_date() WHERE status = 1
