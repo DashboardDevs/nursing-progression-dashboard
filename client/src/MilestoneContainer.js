@@ -13,7 +13,7 @@ export default class MilestoneContainer extends Component {
     }
 
     componentDidUpdate(prevProps){
-        if (prevProps.student != this.props.student){
+        if (prevProps.student !== this.props.student){
             this.collapseMenu()
         }
     }
@@ -33,8 +33,8 @@ export default class MilestoneContainer extends Component {
     render(){
         if(!this.state.expanded){
             return(
-                <div class="flex flex-col items-center bg-gray-200 rounded-xl p-2 my-2 justify-center">
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-4 w-full justify-items-center md:justify-items-start">
+                <div className="flex flex-col items-center bg-gray-200 rounded-xl p-2 my-2 justify-center">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-4 w-full justify-items-center md:justify-items-start">
                         {
                             this.props.milestones.map(milestone => {
                                 let color = ""
@@ -51,7 +51,7 @@ export default class MilestoneContainer extends Component {
                                 }
                                     
                                 return(
-                                    <div class="flex h-12 flex-none overflow-hidden">
+                                    <div className="flex h-12 flex-none overflow-hidden" key={milestone.id}>
                                         <span className="flex-none w-6 h-6 rounded-full mx-2" id={color}></span>
                                         <div>{milestone.name}</div>
                                     </div>
@@ -59,15 +59,15 @@ export default class MilestoneContainer extends Component {
                             })
                         }
                     </div>
-                    <button class="self-end mx-8 w-8 rounded-xl h-8 bg-red-400 focus:outline-none select-none" onClick={this.expandMenu.bind(this)}>
-                        <img class="p-2"src={downarrow}/>
+                    <button className="self-end mx-8 w-8 rounded-xl h-8 bg-red-400 focus:outline-none select-none" onClick={this.expandMenu.bind(this)}>
+                        <img className="p-2"src={downarrow} alt=""/>
                     </button>
                 </div>
             )
         } else {
             return(
-                <div class="flex flex-col items-center bg-gray-200 rounded-xl p-2 my-2 justify-center">
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-4 w-full justify-items-center md:justify-items-start">
+                <div className="flex flex-col items-center bg-gray-200 rounded-xl p-2 my-2 justify-center">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-4 w-full justify-items-center md:justify-items-start">
                         {
                             this.props.milestones.map(milestone => {
                                 let status = ""
@@ -82,7 +82,7 @@ export default class MilestoneContainer extends Component {
                                 }
                                     
                                 return(
-                                    <div class="flex h-12 flex-none overflow-hidden">
+                                    <div className="flex h-12 flex-none overflow-hidden" key={milestone.id}>
                                         <span className="flex-none w-6 h-6 rounded-full mx-2" id={status}></span>
                                         <p>{milestone.name}</p>
                                     </div>
@@ -90,8 +90,8 @@ export default class MilestoneContainer extends Component {
                             })
                         }
                     </div>
-                    <button class="self-end mx-8 w-8 rounded-xl h-8 bg-red-400 focus:outline-none select-none" onClick={this.collapseMenu.bind(this)}>
-                        <img class="p-2"src={uparrow}/>
+                    <button className="self-end mx-8 w-8 rounded-xl h-8 bg-red-400 focus:outline-none select-none" onClick={this.collapseMenu.bind(this)}>
+                        <img className="p-2"src={uparrow} alt=""/>
                     </button>
                 </div>
             )

@@ -1,4 +1,3 @@
-import { comment } from 'postcss';
 import React, { Component } from 'react';
 import { Redirect, withRouter } from 'react-router-dom';
 import './Form.css';
@@ -37,7 +36,7 @@ class UpdateMilestoneForm extends Component {
     }
 
     handleSubmit(event) {
-        if (this.state.milestoneValue == "-1" || this.state.statusValue == "-1") {
+        if (this.state.milestoneValue === -1 || this.state.statusValue === -1) {
             alert("You must select a milestone to update!");
             event.preventDefault();
         }
@@ -84,22 +83,22 @@ class UpdateMilestoneForm extends Component {
                 <div className="text-black m-5 text-4xl">
                     {this.props.location.student.first_name} {this.props.location.student.last_name}
                 </div>
-                <div id="backdrop" class="m-5 p-5 text-center text-lg bg-gray-400 bg-opacity-30">
+                <div id="backdrop" className="m-5 p-5 text-center text-lg bg-gray-400 bg-opacity-30">
                     <div className="text-black m-5 text-4xl">
                         Update Milestone Status
                 </div>
                     <form onSubmit={this.handleSubmit}>
-                        <div class="m-1 p-1">
-                            <label for="milestone">Milestone to Update: </label>
+                        <div className="m-1 p-1">
+                            <label htmlFor="milestone">Milestone to Update: </label>
                             <select id="milestone" value={this.state.milestoneValue} onChange={this.handleMilestoneChange}>
                                 <option disabled="disabled" value="-1">Select Milestone</option>
                                 {this.state.milestones.map(milestone => (
-                                    <option id={milestone.id} value={milestone.id}>{milestone.name}</option>
+                                    <option id={milestone.id} value={milestone.id} key={milestone.id}>{milestone.name}</option>
                                 ))}
                             </select>
                         </div>
-                        <div class="m-1 p-1">
-                            <label for="milestone">Milestone Status: </label>
+                        <div className="m-1 p-1">
+                            <label htmlFor="milestone">Milestone Status: </label>
                             <select id="milestone" value={this.state.statusValue} onChange={this.handleStatusChange}>
                                 <option disabled="disabled" value="-1">Select status</option>
                                 <option value="3">Complete</option>

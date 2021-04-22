@@ -25,7 +25,6 @@ class App extends Component {
 
   handleUserLogin(user) {
     this.setState({ currentUser: user });
-    console.log('app', user);
   }
 
   handleUserLogout() {

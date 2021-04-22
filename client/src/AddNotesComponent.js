@@ -33,10 +33,6 @@ export default class AddNotesComponent extends Component {
                 pad(date.getUTCHours())      + ':' +
                 pad(date.getUTCMinutes())    + ':' +
                 pad(date.getUTCSeconds());
-
-        console.log(this.props.student.id);
-        console.log(this.props.student.advisor_id);
-        console.log(date);
         
         const url = `http://localhost:3001/addnote`;
         const requestOptions = {
@@ -48,7 +44,6 @@ export default class AddNotesComponent extends Component {
                 .catch(err => console.log(err))
                 .then(() => {
                     let newNote = [null, this.props.student.id, this.props.student.advisor_id, noteText, date];
-                    console.log(newNote);
                     this.setState(prevState => (
                         {
                             notes: [...prevState.notes, newNote],
@@ -65,9 +60,9 @@ export default class AddNotesComponent extends Component {
             </div>
             <div>
                 <div>
-                    <textarea id="noteSection" onChange={this.updateInfo} class="w-full bg-gray-200" rows="5"></textarea>
+                    <textarea id="noteSection" onChange={this.updateInfo} className="w-full bg-gray-200" rows="5"></textarea>
                 </div>
-                <input id="submitbutton" type="submit" value="Submit" class="ml-5" onClick={this.addNote}/>
+                <input id="submitbutton" type="submit" value="Submit" className="ml-5" onClick={this.addNote}/>
             </div>
         </div>
         );

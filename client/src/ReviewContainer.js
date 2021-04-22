@@ -20,7 +20,6 @@ export default class ReviewContainer extends Component {
         return fetch(url)
             .then(res => res.json())
             .then(data => {
-                console.log(data);
                 const sorted = data.sort((a,b) => Date.parse(a.submitted) < Date.parse(b.submitted));
                 this.setState({reviews: sorted, isLoading: false});
             })
@@ -51,9 +50,9 @@ export default class ReviewContainer extends Component {
 
         return(
             <section className="flex flex-col w-full items-center overflow-y-auto">
-                {this.state.reviews.map((r) => {
+                {this.state.reviews.map((r,i) => {
                     return(
-                        <div className="flex flex-col items-center w-11/12 text-center mb-2 bg-white rounded-lg border border-yellow">
+                        <div className="flex flex-col items-center w-11/12 text-center mb-2 bg-white rounded-lg border border-yellow" key={i}>
                             <h3 className="text-scarlet">{r.first_name} {r.last_name}</h3>
                             <h4 className="text-gray-400">{r.name}</h4>
                             <h4 className="text-gray-400">Submitted: {Moment(r.submitted).format('MM/DD/YY')}</h4>

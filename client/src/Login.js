@@ -55,18 +55,18 @@ export default class Login extends Component {
         return (
             <div>
                 <form className="mt-10 mx-auto p-5 w-1/3 h-1/3 flex flex-col bg-gray-300 rounded-sm border border-gray-500" onSubmit={this.handleSubmit}>
-                    <label class="flex flex-row">
-                        <span class="flex-grow">Username:</span>
-                        <span class="flex-grow"></span>
-                        <input class="flex-grow rounded-sm border border-gray-500 px-1" type="text" name="username" onChange={this.handleInputChange} placeholder="lastname.#" autoFocus/>
+                    <label className="flex flex-row">
+                        <span className="flex-grow">Username:</span>
+                        <span className="flex-grow"></span>
+                        <input className="flex-grow rounded-sm border border-gray-500 px-1" type="text" name="username" onChange={this.handleInputChange} placeholder="lastname.#" autoFocus/>
                     </label>
-                    <label class="flex flex-row my-5">
-                        <span class="flex-grow">Password:</span>
-                        <span class="flex-grow"></span>
-                        <input class="flex-grow rounded-sm border border-gray-500 px-1" type="password" name="password" onChange={this.handleInputChange}/>
+                    <label className="flex flex-row my-5">
+                        <span className="flex-grow">Password:</span>
+                        <span className="flex-grow"></span>
+                        <input className="flex-grow rounded-sm border border-gray-500 px-1" type="password" name="password" onChange={this.handleInputChange}/>
                     </label>
-                    <div class="w-full flex flex-row-reverse">
-                        <button class="bg-scarlet text-white py-2 px-10 rounded-md hover:bg-dark-scarlet" type="submit">Log In</button>
+                    <div className="w-full flex flex-row-reverse">
+                        <button className="bg-scarlet text-white py-2 px-10 rounded-md hover:bg-dark-scarlet" type="submit">Log In</button>
                     </div>
                 </form>
             </div>

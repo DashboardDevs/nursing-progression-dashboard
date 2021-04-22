@@ -27,15 +27,12 @@ class UpdateRequestForm extends Component {
     }
 
     handleSubmit(event) {
-        if (this.state.milestoneValue == "-1") {
+        if (this.state.value === -1) {
             alert("You must select a milestone to update!");
             event.preventDefault();
         }
         else {
             const url = `http://localhost:3001/milestones/update`;
-            console.log("update");
-            console.log("m_id: ", this.state.value);
-            console.log("s_id: ", this.props.location.student.id);
             
             const requestOptions = {
                 method: 'PUT',
@@ -76,20 +73,20 @@ class UpdateRequestForm extends Component {
 
         return (
           <div>
-            <div id="backdrop"class="m-5 p-5 text-center text-lg bg-gray-400 bg-opacity-30">
+            <div id="backdrop"className="m-5 p-5 text-center text-lg bg-gray-400 bg-opacity-30">
                 <form onSubmit={this.handleSubmit}>
-                <div class="m-1 p-1">
-                <label for="milestone">Milestone to Update: </label>
+                <div className="m-1 p-1">
+                <label htmlFor="milestone">Milestone to Update: </label>
                 <select id="milestone" value={this.state.value} onChange={this.handleMilestoneChange}>
                                 <option disabled="disabled" value="-1">Select Milestone</option>
                                 {this.state.milestones.map(milestone => (
-                                    <option id={milestone.id} value={milestone.id}>{milestone.name}</option>
+                                    <option id={milestone.id} value={milestone.id} key={milestone.id}>{milestone.name}</option>
                                 ))}
                             </select>
                 </div>
                 <br></br>
-                <div class="m-1 p-1">
-                <label for="text">Additional Update Information: </label>
+                <div className="m-1 p-1">
+                <label htmlFor="text">Additional Update Information: </label>
                     <textarea id="text"></textarea>
                 </div>
                 <br></br>

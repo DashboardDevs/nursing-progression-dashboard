@@ -25,7 +25,7 @@ export default class AdvisorCommitteeList extends Component {
                 <div className="font-semibold items-center">Committees</div>
                 <div className="ml-5">
                     {this.state.committees.map(student => (
-                        <div>
+                        <div key ={student.id}>
                             <Link to={{ pathname: `/student/${student.id}` }}>
                                 {student.first_name} {student.last_name}
                             </Link>

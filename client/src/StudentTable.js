@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import StudentInTable from './StudentInTable';
 
 export default class StudentTable extends Component {
 
     render(){
-        let maxShown = 0;
-
         let processedStudents = this.props.students.map(student => {
             student['nameDotNumber'] = student.last_name+'.'+student.dot_number;
             return student;
@@ -21,9 +18,9 @@ export default class StudentTable extends Component {
 
         return(
             <div>
-                <div class="flex flex-col justify-center items-center rounded-lg bg-gray-200 border mb-4 p-4">
+                <div className="flex flex-col justify-center items-center rounded-lg bg-gray-200 border mb-4 p-4">
                         {showStudents.map(s => (
-                            <StudentInTable student={s}/>
+                            <StudentInTable key={s.id} student={s}/>
                         ))}
                 </div>
             </div>
