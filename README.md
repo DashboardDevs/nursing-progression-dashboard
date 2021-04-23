@@ -3,7 +3,7 @@
 To run the database server locally you need to:
 
 - Install a MySQL server and client (I use MySQL Community Server and MySQL Workbench)
-- Make sure the MySQL server is running (In windows I had to go into Services to start it). The server assumes that MySQL is running on localhost:3306 and the root user has no password. To change this edit dbconfig.js in the server directory. 
+- Make sure the MySQL server is running (In windows I had to go into Services to start it). The server assumes that MySQL is running on localhost:3306 and the root user has no password. To change this edit dbconfig.js in the server directory.
 - Run the sql scripts found in /server/sql folder using the MySQL client to create and populate the database(run populate_advisors, populate_students, and populate_milestones first in that order before the other scripts to avoid issues with foreign keys)
 - Run `npm install` in the server directory to install dependencies
 - Run `node server.js` to start the server
